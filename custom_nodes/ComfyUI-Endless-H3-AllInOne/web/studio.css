@@ -620,6 +620,11 @@
 .eh3-action-copy { padding:12px 16px 15px; border-top:2px solid #a2dbc6; }
 .eh3-action-eyebrow { display:block; color:#a8ac9f; font-size:.6em; letter-spacing:.18em; }
 .eh3-action-title { display:block; margin-top:3px; color:#b7ebd5; font-size:1.18em; }
+.eh3-language-switch { display:inline-flex; flex-wrap:nowrap; align-items:center; gap:2px; border:1px solid #68615b; border-radius:7px; padding:2px; }
+.eh3-language-switch button { min-width:3.2em; padding:3px 7px; white-space:nowrap; border-color:transparent; background:transparent; }
+.eh3-language-switch button[aria-pressed="true"] { color:#183b34; background:#a0e0cf; border-color:#a0e0cf; }
+.eh3-language-switch button:focus-visible { outline:2px solid #a0e0cf; outline-offset:2px; }
+.eh3-studio[lang="en"] .eh3-field > span { overflow-wrap:anywhere; }
 .eh3-action-description { margin:6px 0 0; color:#d3cec3; overflow-wrap:anywhere; }
 .eh3-action-unavailable { padding:0 16px 12px; font-size:.72em; color:#ada99e; }
 @media (max-height:560px) {

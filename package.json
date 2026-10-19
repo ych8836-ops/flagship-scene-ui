@@ -1,11 +1,15 @@
 {
   "name": "flagship-scene-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "Scene and clip direction for MiniMax H3, executed with the official Comfy SDK",
   "license": "MIT",
   "scripts": {
-    "test": "node tests/test_ui_sdk.mjs && node tests/test_sdk_events.mjs"
+    "test": "node tests/test_ui_sdk.mjs && node tests/test_sdk_events.mjs && node tests/test_i18n.mjs"
+  },
+  "devDependencies": {
+    "acorn": "8.15.0",
+    "jsdom": "26.1.0"
   }
 }

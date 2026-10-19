@@ -6,7 +6,7 @@ A scene-based MiniMax H3 studio powered by the **official Comfy SDK**. Plan a st
 
 The interface keeps three separate workspaces: settings and clip plans, preview and the output gallery, and a visual scene/clip revision graph. Camera direction has its own editor. Brown surfaces, grey controls and mint active states distinguish the studio.
 
-**Language:** the current interface is primarily Korean. English setup, architecture and validation documentation are provided. Automatic English translation and an English/Korean UI switch are not implemented in this release. ComfyUI's language setting does not translate this custom interface.
+**Language:** use **한국어 / English** in the studio header to switch the interface immediately. The first visit follows the browser language (Korean, otherwise English); your manual choice is saved locally. Menus, settings, camera controls/hover guides, status and known application errors have offline translations. Prompts, dialogue, project/scene names, filenames and serialized generation settings stay unchanged. This switch is independent of ComfyUI's language setting. [Language details](docs/LANGUAGE.md).
 
 ## What it does
 
@@ -66,6 +66,7 @@ SDK transport is **not** a new sampling-speed or image-quality algorithm. Large 
 python tests/test_plan_semantics.py
 python tests/test_dependencies.py
 python tools/install_dependencies.py --features ui
+npm ci
 npm test
 # With the isolated server started using Start.cmd --cpu:
 .sdk-venv\Scripts\python.exe tests/smoke_sdk.py

@@ -1,4 +1,5 @@
 import { sceneForClip, sceneClipIndices, continuesAt } from './sequence.js';
+import {rawUI} from './i18n.js';
 
 export function nodeLocation(plan, index) {
     const clip = plan?.clips?.[index - 1];
@@ -121,7 +122,7 @@ export class PreviewNodes {
             const scene = el('section', undefined, `eh3-node-scene ${group.rows[0].link}`);
             const heading = el('div', undefined, 'eh3-node-scene-heading');
             heading.append(el('strong', group.title), el('span', `${group.rows.length}클립`));
-            if (group.name) heading.append(el('small', group.name));
+            if (group.name) heading.append(rawUI(el('small', group.name)));
             scene.append(heading);
             for (const row of group.rows) {
                 const line = el('div', undefined, `eh3-node-clip-line ${row.link}`);

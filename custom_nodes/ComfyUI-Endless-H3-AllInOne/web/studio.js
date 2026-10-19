@@ -1,14 +1,19 @@
 import { app } from '../../../scripts/app.js';
 import { api } from '../../../scripts/api.js';
 import { StudioSDKEvents } from './sdk_events.js';
-import { StudioCameraWindow } from './camera_window.js?v=pruned_camera_20261017_v1';
-import { StudioActionPreview } from './studio_action_preview.js?v=hoverloop_20261017';
+import {StudioLocalizer, rawUI, uiParts, bindUI, formatUI, translateUI, getUILanguage, getUILocale, setUILanguage} from './i18n.js';
+import { StudioCameraWindow } from './camera_window.js?v=i18n_20261019';
+import { StudioActionPreview } from './studio_action_preview.js?v=i18n_20261019';
 import { StudioLivePreview } from './live_preview.js?v=flagship20261017';
 import { StudioDockLayout } from './studio_layout.js?v=panelnames_20261017';
-import { PreviewNodes, previewNodeModel, nodeLocation } from './preview_nodes.js?v=flagship20261017';
+import { PreviewNodes, previewNodeModel, nodeLocation } from './preview_nodes.js?v=i18n_20261019';
 import { ensureSequencePlan, sceneForClip, referenceSource, continuesAt, sceneClipIndices, clipLabel, appendScene, splitSceneAt, insertSceneClip, pruneEmptyScenes } from './sequence.js';
 
 const clone = value => JSON.parse(JSON.stringify(value));
+function displayClipLabel(plan, index) {
+    const scene = sceneForClip(plan, plan.clips[index] || {});
+    return scene ? formatUI('{0} · 클립 {1}', scene.name, sceneClipIndices(plan,index).indexOf(index)+1) : formatUI('클립 {0}', index+1);
+}
 export function galleryOutputs(project) {
     return Object.values(project.clips || {}).flatMap(clip => [
         {...clip, kind: 'clip', label: `클립 ${clip.index}`},
@@ -148,7 +153,9 @@ function element(tag, text, className = '') {
 
 const graphViewKey = 'flgaship_h3_node_view';
 let graphViewBar;
+let graphViewLocalizer;
 function showGraphViewBar() {
+    graphViewLocalizer?.dispose(); graphViewLocalizer = null;
     graphViewBar?.remove(); graphViewBar = null;
     const graph = app.rootGraph || app.graph;
     const view = graph?.extra?.[graphViewKey];
@@ -181,6 +188,7 @@ function showGraphViewBar() {
         } catch (error) { status.textContent = error.message; back.disabled = false; }
     });
     document.body.append(graphViewBar);
+    graphViewLocalizer = new StudioLocalizer(); graphViewLocalizer.watch(graphViewBar);
 }
 
 export class EndlessStudio {
@@ -310,7 +318,8 @@ export class EndlessStudio {
         const panels = this.node.properties.endless_panels ||= {};
         const details = element('details', undefined, 'eh3-panel'); parent.append(details);
         details.dataset.panel = key; details.open = panels[key] ?? open;
-        const summary = element('summary', title); details.append(summary);
+        const summary = element('summary', typeof title === 'function' ? undefined : title); details.append(summary);
+        if (typeof title === 'function') bindUI(summary, 'textContent', title);
         const panel = element('section', undefined, className); details.append(panel);
         details.addEventListener('toggle', () => {
             if (!details.isConnected) return;
@@ -389,9 +398,11 @@ export class EndlessStudio {
         }
         for (const item of items) {
             const option = element('option', item); option.value = item; select.append(option);
+            if (select.dataset.uiFileValues === 'true') rawUI(option);
         }
         if (value && !items.includes(value)) {
             const option = element('option', `${value} · 파일 확인 필요`); option.value = value; select.append(option);
+            bindUI(option,'textContent',()=>formatUI('{0} · 파일 확인 필요',value));
         }
         select.value = value ?? '';
     }
@@ -399,6 +410,7 @@ export class EndlessStudio {
         const wrapper = element('label', undefined, 'eh3-field');
         wrapper.append(element('span', label));
         const input = element(options.items ? 'select' : options.multiline ? 'textarea' : 'input');
+        if (options.asset || ['model','clip','video_vae','audio_vae','turbo_lora','reference_lora','name','audio_file'].includes(key)) input.dataset.uiFileValues = 'true';
         input.setAttribute('aria-label', label);
         if (options.items) this.options(input, options.items, object[key], options.emptyLabel);
         else if (typeof object[key] === 'boolean') { input.type = 'checkbox'; input.checked = object[key]; }
@@ -435,6 +447,11 @@ export class EndlessStudio {
             const updateLabel = () => {
                 trigger.textContent = input.selectedOptions[0]?.textContent || options.emptyLabel || '파일 선택';
                 trigger.title = trigger.textContent;
+                if (input.dataset.uiFileValues === 'true') {
+                    trigger.dataset.uiRaw = 'text'; trigger.dataset.uiRawAttrs = 'title';
+                    bindUI(trigger,'textContent',()=>input.selectedOptions[0]?.textContent || translateUI(options.emptyLabel || '파일 선택'));
+                    bindUI(trigger,'title',()=>input.selectedOptions[0]?.textContent || translateUI(options.emptyLabel || '파일 선택'));
+                }
             };
             input.addEventListener('input', updateLabel);
             input.addEventListener('files-refreshed', updateLabel); updateLabel();
@@ -501,6 +518,7 @@ export class EndlessStudio {
         };
         const close = (focus = true) => {
             if (closed) return; closed = true;
+            unwatchLanguage();
             window.removeEventListener('resize', position); window.removeEventListener('scroll', position, true);
             if (menu.matches(':popover-open')) menu.hidePopover(); menu.remove();
             if (this.referenceDialog?.menu === menu) this.referenceDialog = null;
@@ -530,6 +548,7 @@ export class EndlessStudio {
             list.replaceChildren();
             matches.forEach((file, i) => {
                 const option = this.button(file.label, () => choose(i), list);
+                if (file.value && !/^(종횡비|메가픽셀)/.test(title)) rawUI(option);
                 option.setAttribute('role', 'option'); option.setAttribute('aria-selected', String(file.value === current));
                 option.id = `${list.id}-${i}`; option.title = file.label;
                 option.addEventListener('pointerenter', () => { active = i; highlight(false); });
@@ -551,6 +570,7 @@ export class EndlessStudio {
         menu.addEventListener('wheel', event => event.stopPropagation(), {passive: true});
         menu.addEventListener('toggle', event => { if (event.newState === 'closed') close(false); });
         // Keep a picker opened from common settings inside that modal's active subtree.
+        const unwatchLanguage = this.localizer?.watch(menu) || (() => {});
         (origin?.closest('dialog[open]') || document.body).append(menu);
         origin?.setAttribute('aria-expanded', 'true'); origin?.setAttribute('aria-controls', list.id);
         menu.showPopover(); position(); highlight(); search.focus({preventScroll: true});
@@ -665,6 +685,12 @@ export class EndlessStudio {
             this.generationMode === 'all' ? '남은 전체 클립' : '남은 전체 클립 → 합치기';
         this.modeInputs.forEach(input => { input.disabled = busy || (input.value==='camera'&&!this.cameraReferences().length); });
         if(cameraMode){this.generateButton.disabled=busy||!this.cameraReferences().length;this.generateButton.title='본 UI 설정으로 카메라 영상 생성';this.generationTarget.textContent='카메라 디렉팅';}
+        bindUI(this.generateButton,'title',()=>this.generationMode==='camera'?translateUI('본 UI 설정으로 카메라 영상 생성'):
+            this.generationMode==='clip'?formatUI('선택한 {0} 생성 · 완료 클립은 다시 생성',displayClipLabel(this.state.plan,this.selected)):
+            translateUI(this.generationMode==='all'?'남은 모든 클립 생성':'남은 모든 클립 생성 후 합치기'));
+        bindUI(this.generationTarget,'textContent',()=>this.generationMode==='camera'?translateUI('카메라 디렉팅'):
+            this.generationMode==='clip'?displayClipLabel(this.state.plan,this.selected)+(this.project?.clips[String(this.selected+1)]?translateUI(' · 다시 생성'):''):
+            translateUI(this.generationMode==='all'?'남은 전체 클립':'남은 전체 클립 → 합치기'));
         this.scheduleButton.textContent = waiting ? `✓ 클립 ${batch.target_clip} 예약 · 취소` : '다음 예약 생성';
         this.scheduleButton.classList.toggle('selected', waiting);
         this.scheduleButton.setAttribute('aria-pressed', String(waiting));
@@ -742,6 +768,7 @@ export class EndlessStudio {
                 this.selected = indices[0]; this.selectedClips = new Set([this.selected]);
                 this.persist(); this.render();
             }, grid, 'eh3-scene-button' + (item === scene ? ' selected' : ''));
+            button.dataset.uiRaw = 'text';
             button.setAttribute('aria-pressed', String(item === scene));
             button.title = `완료 ${complete}/${indices.length} · ${item.continue_previous ? '앞 씬 연결' : '새 씬 시작'}`;
         });
@@ -841,6 +868,9 @@ export class EndlessStudio {
             const promptSnippet = clip.prompt.trim() ? clip.prompt.trim().slice(0, 100) : '(프롬프트 없음)';
             button.title = `${clipLabel(this.state.plan, i)} [${stateLabel}] · 전체 번호 ${i + 1}\n길이: ${clip.seconds || 5}초 | 시드: ${clip.seed ?? -1}\n프롬프트: ${promptSnippet}\n\n• 클릭: 선택\n• [다중 선택] 또는 Ctrl+클릭: 다중 선택`;
             button.setAttribute('aria-label', `${clipLabel(this.state.plan, i)} ${stateLabel}`);
+            bindUI(button,'title',()=>formatUI('{0} [{1}] · 전체 번호 {2}\n길이: {3}초 | 시드: {4}\n프롬프트: {5}\n\n• 클릭: 선택\n• [다중 선택] 또는 Ctrl+클릭: 다중 선택',
+                displayClipLabel(this.state.plan,i),translateUI(stateLabel),i+1,clip.seconds||5,clip.seed??-1,promptSnippet));
+            bindUI(button,'aria-label',()=>`${displayClipLabel(this.state.plan,i)} ${translateUI(stateLabel)}`);
             button.setAttribute('aria-pressed', String(isSelected));
             button.disabled = this.busyRequest;
 
@@ -928,7 +958,9 @@ export class EndlessStudio {
         this.clipTab.classList.toggle('selected', !full); this.fullTab.classList.toggle('selected', full);
         this.clipTab.setAttribute('aria-pressed', String(!full)); this.fullTab.setAttribute('aria-pressed', String(full));
         this.previewSelect.hidden = full;
-        this.previewTitle.textContent = `${this.galleryPreview ? `${this.galleryPreview.project_name} · ` : ''}${full ? this.fullLabel.textContent : this.previewLabel.textContent}`;
+        if (this.galleryPreview && this.previewTitle.ownerDocument) uiParts(this.previewTitle,
+            [{raw: this.galleryPreview.project_name}, ' · ', full ? this.fullLabel.textContent : this.previewLabel.textContent]);
+        else this.previewTitle.textContent = full ? this.fullLabel.textContent : this.previewLabel.textContent;
         const selectedResult = full ? exportFile : record;
         const job = selectedResult?.job_status || this.project?.jobs[selectedResult?.job];
         const seconds = job?.finished > job?.created ? job.finished - job.created : null;
@@ -1131,7 +1163,10 @@ export class EndlessStudio {
                     (item.kind !== 'full' ? this.video : this.fullVideo).scrollIntoView({block: 'nearest'});
                 }, tile, 'eh3-gallery-card');
                 card.setAttribute('aria-label', `${item.project_name} · ${item.label} 보기`);
-                card.title = `${item.project_name} · ${item.label}${item.created ? ` · ${new Date(item.created * 1000).toLocaleString('ko-KR')}` : ''}`;
+                card.title = `${item.project_name} · ${item.label}${item.created ? ` · ${new Date(item.created * 1000).toLocaleString(getUILocale())}` : ''}`;
+                card.dataset.uiRawAttrs = 'title';
+                bindUI(card,'aria-label',()=>formatUI('{0} · {1} 보기',item.project_name,translateUI(item.label)));
+                bindUI(card,'title',()=>`${item.project_name} · ${translateUI(item.label)}${item.created?' · '+new Date(item.created*1000).toLocaleString(getUILocale()):''}`);
                 card.dataset.kind = item.kind; card.dataset.job = item.job; card.dataset.key = item.key;
                 const thumbnail = element('video'); thumbnail.preload = 'metadata'; thumbnail.muted = true;
                 thumbnail.playsInline = true; thumbnail.setAttribute('aria-hidden', 'true');
@@ -1276,8 +1311,12 @@ export class EndlessStudio {
         for (const item of this.trashedOutputs || []) {
             const row = element('label', undefined, 'eh3-trash-item'); list.append(row);
             const check = element('input'); check.type = 'checkbox'; check.setAttribute('aria-label', `${item.project_name} · ${item.label} 복원 선택`);
+            bindUI(check,'aria-label',()=>formatUI('{0} · {1} 복원 선택',item.project_name,translateUI(item.label)));
             check.disabled = item.busy;
-            row.append(check, element('span', `${item.project_name} · ${item.label}${item.busy ? ' · 생성 중' : ''}`));
+            const caption = element('span');
+            if (caption.ownerDocument) uiParts(caption, [{raw:item.project_name}, ' · ', item.label, item.busy ? ' · 생성 중' : '']);
+            else caption.textContent = `${item.project_name} · ${item.label}${item.busy ? ' · 생성 중' : ''}`;
+            row.append(check, caption);
             check.addEventListener('change', () => {
                 if (check.checked) selected.add(item.key); else selected.delete(item.key);
                 restore.disabled = !selected.size; restore.textContent = selected.size ? `선택 복원 (${selected.size})` : '선택 복원';
@@ -1447,7 +1486,7 @@ export class EndlessStudio {
         entries.forEach((entry, i) => {
             const name = typeof entry === 'string' ? entry : entry.name;
             const tag = limit === 1 ? label : `${{image: 'Picture', video: 'Video', audio: 'Audio'}[kind]} ${i + 1 + audioOffset}`;
-            const card = element('div', undefined, 'eh3-reference-card'); card.title = `${tag} · ${name}`; grid.append(card);
+            const card = element('div', undefined, 'eh3-reference-card'); card.title = `${tag} · ${name}`; card.dataset.uiRawAttrs = 'title'; grid.append(card);
             const media = element(kind === 'image' ? 'img' : kind); media.src = viewURL(name, 'input');
             if (kind === 'image') { media.alt = `${tag} · ${name}`; media.loading = 'lazy'; }
             else { media.controls = true; media.muted = kind === 'video'; media.preload = 'metadata'; media.playsInline = true; }
@@ -1530,7 +1569,7 @@ export class EndlessStudio {
         this.cameraButton = null;
         const c = this.state.plan.clips[this.selected];
         const panel = this.inputPanel = this.collapsible(this.inputRail, 'inputs',
-            `입력 파일 · ${clipLabel(this.state.plan, this.selected)} · ${c.mode}`, 'eh3-input-files');
+            () => formatUI('입력 파일 · {0} · {1}',displayClipLabel(this.state.plan,this.selected),c.mode), 'eh3-input-files');
         const toolbar = element('div', undefined, 'eh3-input-toolbar');
         const content = element('div', undefined, 'eh3-input-content');
         const media = element('div', undefined, 'eh3-input-media');
@@ -1699,10 +1738,14 @@ export class EndlessStudio {
         }, actions, 'primary');
         this.button('취소', () => { dialog.close(); dialog.remove(); }, actions);
         dialog.addEventListener('cancel', () => dialog.remove());
+        const unwatchLanguage = this.localizer?.watch(dialog);
+        dialog.addEventListener('close', () => unwatchLanguage?.(), {once: true});
         document.body.append(dialog); dialog.showModal();
     }
 
     render(view = this.captureScroll()) {
+        this.localizer ||= new StudioLocalizer();
+        this.localizer.watch(this.root);
         this.actionPreview ||= new StudioActionPreview(this.root);
         this.actionPreview.hide();
         this.panelLayout?.dispose();
@@ -1742,6 +1785,14 @@ export class EndlessStudio {
         const heading = element('div', undefined, 'eh3-heading');
         heading.append(element('strong', 'Flagship Scene UI' + (this.config?.sdk_cpu ? ' · CPU 검증' : '')));
         const tools = element('div', undefined, 'eh3-header-tools'); heading.append(tools);
+        const languages = element('div', undefined, 'eh3-language-switch');
+        languages.setAttribute('role', 'group'); languages.setAttribute('aria-label', 'UI 언어 선택');
+        for (const [value, label] of [['ko','한국어'],['en','English']]) {
+            const button = rawUI(this.button(label, () => setUILanguage(value), languages));
+            button.dataset.uiLanguage = value; button.setAttribute('lang', value);
+            button.setAttribute('aria-pressed', String(getUILanguage() === value));
+        }
+        tools.append(languages);
         const sizes = ['small', 'normal', 'large'];
         this.smallerButton = this.button('−', () => this.setUISize(sizes[Math.max(0, sizes.indexOf(this.root.dataset.uiSize) - 1)]), tools);
         this.smallerButton.setAttribute('aria-label', 'UI 작게');
@@ -1791,15 +1842,16 @@ export class EndlessStudio {
         }
         const placeholder = element('option', '저장된 프로젝트 선택'); placeholder.value = ''; this.projectSelect.append(placeholder);
         for (const p of list) {
-            const date = new Date((p.updated || p.created) * 1000).toLocaleString('ko-KR');
+            const date = new Date((p.updated || p.created) * 1000).toLocaleString(getUILocale());
             const option = element('option', `${p.name} · ${date} · ${p.completed ?? Object.keys(p.clips || {}).length}클립`);
+            bindUI(option,'textContent',()=>formatUI('{0} · {1} · {2}클립',p.name,new Date((p.updated||p.created)*1000).toLocaleString(getUILocale()),p.completed??Object.keys(p.clips||{}).length));
             option.value = p.id; this.projectSelect.append(option);
         }
         this.projectSelect.value = this.state.project_id || '';
         this.projectSelect.addEventListener('change', async () => {
             try {
                 if (!this.projectSelect.value) return;
-                if (this.dirty && !window.confirm('저장되지 않은 수정 내용이 있습니다. 선택한 프로젝트를 불러올까요?')) {
+                if (this.dirty && !window.confirm(translateUI('저장되지 않은 수정 내용이 있습니다. 선택한 프로젝트를 불러올까요?'))) {
                     this.projectSelect.value = this.state.project_id || ''; return;
                 }
                 const p = await request(`project/${this.projectSelect.value}`);
@@ -1816,7 +1868,7 @@ export class EndlessStudio {
         this.field(projectPanel, '프로젝트 이름', this.state, 'name', {disabled: !!this.state.project_id});
         this.modeSelect = this.field(projectPanel, '생성 방식', c, 'mode', {items: ['I2V', 'R2V', 'T2V']});
         this.modeSelect.addEventListener('change', () => this.render());
-        this.modeSelect.previousElementSibling.textContent = `생성 방식 · ${clipLabel(this.state.plan, this.selected)}`;
+        bindUI(this.modeSelect.previousElementSibling,'textContent',()=>formatUI('생성 방식 · {0}',displayClipLabel(this.state.plan,this.selected)));
         const actions = element('div', undefined, 'eh3-row eh3-actions'); commandbar.append(actions);
         const modes = element('div', undefined, 'eh3-generation-modes'); commandbar.prepend(modes);
         modes.setAttribute('role', 'radiogroup'); modes.setAttribute('aria-label', '생성 범위');
@@ -1905,6 +1957,7 @@ export class EndlessStudio {
         if (this.cameraButton) this.panelLayout.panels.find(panel => panel.dataset.studioPanel === '1')
             .querySelector('.eh3-pane-header').append(this.cameraButton);
         this.updateStatus();
+        this.localizer.flush();
         this.restoreScroll(view);
         requestAnimationFrame(() => {
             if (!this.disposed && scrollEpoch === this.scrollRestoreEpoch) {
@@ -1932,7 +1985,7 @@ export class EndlessStudio {
             ? `전체 클립 설정 (${totalClips}개 클립)`
             : isMulti
                 ? `선택 클립 설정 (${validSelected.length}개 선택 / 전체 ${totalClips}개)`
-                : `${clipLabel(this.state.plan, validSelected[0])} 설정`;
+                : () => formatUI('{0} 설정',displayClipLabel(this.state.plan, validSelected[0]));
 
         this.editor = this.collapsible(parent, 'editor', title, 'eh3-editor');
 
@@ -2341,6 +2394,7 @@ export class EndlessStudio {
     }
 
     dispose() {
+        this.localizer?.dispose();
         this.sdkEvents?.dispose();
         this.actionPreview?.dispose();
         this.cameraWindow?.dispose();
@@ -2360,7 +2414,7 @@ export class EndlessStudio {
 }
 
 const style = document.createElement('link');
-style.rel = 'stylesheet'; style.href = new URL('./studio.css?v=desk_20261017', import.meta.url).href; document.head.append(style);
+style.rel = 'stylesheet'; style.href = new URL('./studio.css?v=i18n_20261019', import.meta.url).href; document.head.append(style);
 app.registerExtension({
     name: 'EndlessH3.AllInOneStudio',
     afterConfigureGraph() { showGraphViewBar(); },

@@ -13,6 +13,7 @@
 | CrossViewWarp | [cseti007 pinned source](https://github.com/cseti007/ComfyUI-CrossViewWarp/tree/3266a83a84eaa6833a9ebc38ac7cdd8789e44f5b) | Apache-2.0 source and license downloaded separately; our geometry/timing adapter is included |
 | Three.js r164 / RoomEnvironment | [Three.js](https://github.com/mrdoob/three.js/tree/r164) | MIT source/license downloaded separately. Installer maps the RoomEnvironment import to the local Three module; original and installed hashes are recorded |
 | Noto Sans KR variable font | [Google Fonts](https://github.com/google/fonts/tree/main/ofl/notosanskr) | OFL font and license downloaded separately |
+| jsdom / Acorn | [jsdom](https://github.com/jsdom/jsdom), [Acorn](https://github.com/acornjs/acorn) | Development-only DOM and message-coverage test dependencies, pinned in package-lock.json; not bundled into the studio runtime |
 | NVIDIA VFX / Optical Flow / FRUC | [NVIDIA VFX documentation](https://docs.nvidia.com/maxine/vfx-python/latest/index.html), [Optical Flow SDK](https://developer.nvidia.com/opticalflow-sdk) | No proprietary implementation, binding wheel, SDK or DLL included |
 
 The dependency lock records immutable revisions and archive/file checksums. External source remains in ignored runtime/download directories and is not included in the public source archive. References, example model links and dependency availability do not transfer model licenses to this application.

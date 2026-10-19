@@ -1,6 +1,7 @@
 import * as THREE from './vendor/build/three.module.js';
 import {CameraStageRenderer} from './camera_character_renderer.js?v=lowpoly_20261017';
 import {StudioActionActor} from './studio_action_actor.js?v=hoverloop_20261017';
+import {canonicalUI, StudioLocalizer} from './i18n.js';
 
 const guides={
     generate:['생성','슬레이트를 내리고 선택한 생성 작업을 시작합니다.'],
@@ -21,7 +22,7 @@ const guides={
 export function studioActionFor(button){
     if(button.classList.contains('eh3-generate'))return 'generate';
     if(button.matches('[data-camera-choice]')||button.classList.contains('eh3-reference-remove')||button.classList.contains('eh3-gallery-card'))return null;
-    const label=(button.getAttribute('aria-label')||button.textContent||'').trim();
+    const label=canonicalUI((button.getAttribute('aria-label')||button.textContent||'').trim());
     if(/카메라 디렉팅/.test(label))return 'camera';
     if(/예약/.test(label))return 'schedule';
     if(/중지/.test(label))return 'stop';
@@ -77,6 +78,7 @@ export class StudioActionPreview {
         const copy=el('div','eh3-action-copy');copy.append(el('span','eh3-action-eyebrow','SCENE ASSISTANT'),this.heading,this.description);
         this.unavailable=el('div','eh3-action-unavailable','기능 안내');this.unavailable.hidden=true;
         this.root.append(this.canvas,copy,this.unavailable);document.body.append(this.root);
+        this.localizer=new StudioLocalizer();this.localizer.watch(this.root);
         try{this.renderer=new ActionRenderer(this.canvas);}catch{this.unavailable.hidden=false;this.canvas.hidden=true;}
         this.canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();this.hide();this.renderer?.stage.dispose(false);this.renderer=null;});
         this.canvas.addEventListener('webglcontextrestored',()=>{if(this.disposed)return;try{this.renderer=new ActionRenderer(this.canvas);this.canvas.hidden=false;this.unavailable.hidden=true;}catch{this.canvas.hidden=true;this.unavailable.hidden=false;}});
@@ -109,5 +111,5 @@ export class StudioActionPreview {
         if(this.target){if(this.previous)this.target.setAttribute('aria-describedby',this.previous);else this.target.removeAttribute('aria-describedby');if(this.previousTitle!==null&&this.target.getAttribute('title')===null)this.target.setAttribute('title',this.previousTitle);this.target=null;}
         if(this.root&&!this.root.hidden){this.root.hidePopover();this.root.hidden=true;}
     }
-    dispose(){this.disposed=true;this.hide();for(const remove of this.bindings)remove();this.motion?.removeEventListener?.('change',this.motionChanged);this.renderer?.dispose();this.root?.remove();}
+    dispose(){this.disposed=true;this.localizer?.dispose();this.hide();for(const remove of this.bindings)remove();this.motion?.removeEventListener?.('change',this.motionChanged);this.renderer?.dispose();this.root?.remove();}
 }

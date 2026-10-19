@@ -8,18 +8,18 @@
     },
     {
       "path": ".github/workflows/tests.yml",
-      "bytes": 644,
-      "sha256": "315bd3171590833d82776eda633ec1c7c5d0b28ca86a0b09206305704d11b325"
+      "bytes": 664,
+      "sha256": "111056cddfda29001c10a80ac6e4ae16a0ead5575d53a0736cfbc7da0d18cd0a"
     },
     {
       "path": ".gitignore",
-      "bytes": 251,
-      "sha256": "a183657cfd3c0851369498807e32d6bd80992d8f0ea648be1b735e67868b3894"
+      "bytes": 265,
+      "sha256": "4bfeedb6143544f4e9317a882a4ead8adf43c7d94c604dc33ba25d151daa782c"
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 711,
-      "sha256": "75d68f9927a82c2d6aaf5dc407ed243ab04c8e4e8f2304714c9827b8154d0279"
+      "bytes": 1364,
+      "sha256": "92ed20577519d88aa764df0024902691e835bd05c0e48c2cc27cf19651694f1c"
     },
     {
       "path": "LICENSE",
@@ -28,8 +28,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8745,
-      "sha256": "ff9dc1245cbebfaf926610137821552fc3fcd1b99d9afb2eb967e0f62cb95352"
+      "bytes": 8974,
+      "sha256": "7d511ca56d4a69a8906a28b3de6e17161e7332b75d3f7bc46efc3843ca1a9b2f"
     },
     {
       "path": "Start.cmd",
@@ -53,8 +53,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 3177,
-      "sha256": "dfb0eeec3511aea348b04377089ac1338d2469e7d6f2d941738e00a85d2d1a75"
+      "bytes": 3408,
+      "sha256": "50c585e7a177680cf1b98c17c40113f4c80fb0e39118b15ba485663b8c84ee61"
     },
     {
       "path": "bootstrap.py",
@@ -69,7 +69,7 @@
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/__init__.py",
       "bytes": 40600,
-      "sha256": "e3db7edea418bed763058e9fae2e9deb28d1836fcb0e5eed745963dbb94d6be2"
+      "sha256": "e25a6e240b418d2789fff6fcb248a8f691a13ce8233fa475c2b1e72e1236bd76"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/dependencies.py",
@@ -163,8 +163,23 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_window.js",
-      "bytes": 30210,
-      "sha256": "7f98b27e7b725306f6cf9fdc4e2c1a14c64e6542c8f97e8f48be412992471c9c"
+      "bytes": 30395,
+      "sha256": "2d3dd8dfbe0c0cd85998af2902d802b89d3303519d8cd7651b7e7dfba71f1c79"
+    },
+    {
+      "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/i18n.js",
+      "bytes": 9610,
+      "sha256": "947c8427b31e461c8addf008f4d396bb9e8184a90d658cef6e515c656ec5a278"
+    },
+    {
+      "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/i18n_errors.js",
+      "bytes": 28730,
+      "sha256": "18c39f0d06a016a39aa2dddfae8de78e0e4a05ec7134067c55163ae0ed24d453"
+    },
+    {
+      "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/i18n_messages.js",
+      "bytes": 69737,
+      "sha256": "29ffbc1fcd7bde44c948b05accd47ad96aacd5b78d599105a2038709b5c499fd"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/live_preview.js",
@@ -188,8 +203,8 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/preview_nodes.js",
-      "bytes": 12290,
-      "sha256": "44508961ca66b8521e194aae50966e1d9902bf5adb2ae948ba63cf3a91195684"
+      "bytes": 12330,
+      "sha256": "ec8ff93a84a9421d5faada17c62f4faeb4628b9e00e776880ab31d00fdd5790a"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/sdk_events.js",
@@ -203,13 +218,13 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/studio.css",
-      "bytes": 65138,
-      "sha256": "325e5e59b0869d53a6f72db99b49f57342df4242bf2fecfcaaeb3d6d00beee9e"
+      "bytes": 65702,
+      "sha256": "407eacbef152d50b7a4faf09724808394cab1955a457a886f6fc66ccb49f4d17"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/studio.js",
-      "bytes": 166320,
-      "sha256": "02b13d56dfd6f6415dcb9a27c49f8d429d16641ee281ec9e2c959f66b97e2021"
+      "bytes": 171393,
+      "sha256": "bf9080428e7c62fbfb08819f890397deeb385cd0f8bde0e8733c9c66ab888412"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/studio_action_actor.js",
@@ -218,8 +233,8 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/studio_action_preview.js",
-      "bytes": 9733,
-      "sha256": "b02496fa4eb8c648cde4a00237dc4f0418a2f75609e6457047dac021b72e8e65"
+      "bytes": 9906,
+      "sha256": "f9aa061ab32f1a03660c9424dd6ad215d9c82012dfe04b168e9c76975c648e60"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/studio_layout.js",
@@ -452,6 +467,11 @@
       "sha256": "61b4172854c90b90a0c079740d7ac7b8f9de6c6c6038f7db02a8af135214bc1d"
     },
     {
+      "path": "docs/LANGUAGE.md",
+      "bytes": 3760,
+      "sha256": "12620d3ca843a953c9086818210e7583ee5e5a0ac634fb84e16dbcabb9f32c49"
+    },
+    {
       "path": "docs/MODELS.md",
       "bytes": 6033,
       "sha256": "a0239bbb7082a75e4ba10bd9b29448837bbf4cb1a461938edcbd27e3d35c6c72"
@@ -463,13 +483,13 @@
     },
     {
       "path": "docs/RELEASE_KO.md",
-      "bytes": 3956,
-      "sha256": "827cd2e06e15483fd87a73df25fd7a9358fbc57b15e4df54a7f457865b706640"
+      "bytes": 4330,
+      "sha256": "68d740604f9f0916d2daa01fec64f2c07f11d29737a51ea171b1e7240b41996f"
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 4520,
-      "sha256": "06bc2330f88af5eb5056c4606f384a7b24b8ca1497e4511f1fe0e138c4d1884c"
+      "bytes": 4882,
+      "sha256": "5234431fb77470405c8b41dfa40cfab361ac4ee27014d36df0cc4134057e5153"
     },
     {
       "path": "examples/Flagship_Scene_UI.json",
@@ -502,9 +522,14 @@
       "sha256": "ff739e534519f7cda567cad30fde3e32644d3e248ca7b2e3f26720a2c69dea20"
     },
     {
+      "path": "package-lock.json",
+      "bytes": 19058,
+      "sha256": "d6b3208a52d98577cda0652ab2c42a6ccdbb2acd7943b77127bc9d40c91c9e7e"
+    },
+    {
       "path": "package.json",
-      "bytes": 308,
-      "sha256": "69d35ff4cb74821dbab93da154a5c26b60e6279ca207c1d896ac8bd71a9059db"
+      "bytes": 409,
+      "sha256": "da3633432eb4ff86e6e2e44e30b19677db1b954f8dfa61bb42e7de4b85583e70"
     },
     {
       "path": "run.py",
@@ -552,6 +577,11 @@
       "sha256": "2ce6c534fecda9d1bac418f55a341b57b77ae87f34125f72bf0a8bab14ac9ac1"
     },
     {
+      "path": "tests/test_i18n.mjs",
+      "bytes": 12604,
+      "sha256": "16d7102351c520c082b5a600cd9c36f59ba87c60dd7aa5b43033248c2313b90a"
+    },
+    {
       "path": "tests/test_plan_semantics.py",
       "bytes": 2734,
       "sha256": "ff1578f407627e938791db1c001add2231af3f61d75c50b03a7a20cc8ac6f279"
@@ -573,8 +603,8 @@
     },
     {
       "path": "tests/test_ui_sdk.mjs",
-      "bytes": 46776,
-      "sha256": "e847f35534c2e41cd58fc393d3b5abad64e3b863eb2e3a86bd635cb4669a28d6"
+      "bytes": 46882,
+      "sha256": "44ca7f0b6c2e9722ad5e0c96513b42bb2ecd7e7a91185fb4d4feeec396e3b152"
     },
     {
       "path": "tools/check_installation.py",

@@ -7,6 +7,7 @@ This is a self-hosted SDK release candidate. A registered node or a passing fixt
 | Fresh isolated installation | Passed | New engine copy, separate SDK environment, pinned external source/assets, isolated data and loopback ports |
 | Real SDK → official proxy → isolated Comfy CPU video round trip | 16 checks passed | Submission/download, preserved graph, duplicate request recovery, request-key lookup, definitive validation rejection, project commit/gallery, release of active job, FFmpeg-only normal assembly, UI/font/template availability |
 | UI DOM and SDK event tests | Passed | Three workspaces, source UI rendering, camera editor/shared controls, scene/revision graph, 99 retained hover guides, cleanup and job-event handling. WebGL is mocked; this is not manual browser certification |
+| Bilingual studio DOM checks (0.1.1) | Passed locally | Korean/English chrome, camera panels/hover guides and known errors. Existing controls, focus/selection, scroll, playback time, user names/files, prompts/dialogue and serialized plan/widget state are retained; switching sends no network request. Pinned jsdom tests do not certify WebGL appearance |
 | Plan/ledger semantics | Passed | Only tagged common pictures selected, same-scene context retained, scene boundary reset, selected-clip retry leaves other outputs intact |
 | Scene-local Endless followed by FFmpeg | Passed | Pinned upstream author/trim nodes with deterministic decoder fixtures and real MP4/FFmpeg. 243 + 238 = 481 frames; scene-head context removed once, synchronized audio placement |
 | Dependency/setup checks | Passed | Immutable checksums, missing node reporting, archive path traversal rejected, failed install does not commit a partial directory, source Comfy/private user files not copied or modified |
@@ -37,6 +38,7 @@ Follow [installation](INSTALLATION.md), install the explicit UI dependency profi
 python tests/test_setup.py
 python tests/test_dependencies.py
 python tests/test_plan_semantics.py
+npm ci
 npm test
 Start.cmd --cpu
 # In a second terminal, while the isolated CPU engine is running:

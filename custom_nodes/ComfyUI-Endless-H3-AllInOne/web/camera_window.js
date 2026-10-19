@@ -10,6 +10,7 @@ import {SHOTS,ANGLES,MOVES,LENSES,FOCUS,SPEEDS,EASINGS,REMOVED_MOVES,normalizeCa
 import {CameraMotionPreview} from './camera_motion_preview.js?v=pruned_camera_20261017_v1';
 
 import {cameraControlIcon} from './camera_icons.js?v=icons_20261017';
+import {rawUI} from './i18n.js';
 
 const clone = value => JSON.parse(JSON.stringify(value));
 
@@ -58,6 +59,7 @@ export class StudioCameraWindow {
         const resize=this.button('↘',()=>{},'eh3-camera-window-resize');resize.title='드래그 또는 방향키로 창 크기 조절';
 
         this.root.append(this.header,sourceRow,this.body,resize);document.body.append(this.root);
+        this.unwatchLanguage=this.studio.localizer?.watch(this.root);
 
         this.guideHost=el('aside',undefined,'eh3-desk-guide');this.motionGuide=new CameraMotionPreview(this.root,this.guideHost);
 
@@ -133,7 +135,7 @@ export class StudioCameraWindow {
 
         const manual=el('option','직접 업로드 영상');manual.value='';this.sourceSelect.append(manual);
 
-        for(const name of this.sources){const option=el('option',name);option.value=name;this.sourceSelect.append(option);}
+        for(const name of this.sources){const option=rawUI(el('option',name));option.value=name;this.sourceSelect.append(option);}
 
         if(this.state.selectedRef&&!this.sources.includes(this.state.selectedRef)){this.state.selectedRef='';this.state.widgets.source_video='';}
 
@@ -199,7 +201,7 @@ export class StudioCameraWindow {
 
         this.sourceVideo.pause();this.sourceVideo.src=name?this.sourceURL(name):'';this.sourceVideo.hidden=!name;if(name)this.sourceVideo.load();
 
-        this.sourceMeta.textContent=name||'참조 비디오를 선택하세요.';this.updateControls();this.persist();if(this.studio.previewKind==='camera'){this.studio.cameraPreviewId='source';this.studio.drawPreview();}
+        this.sourceMeta.dataset.uiRaw=name?'true':'false';this.sourceMeta.textContent=name||'참조 비디오를 선택하세요.';this.updateControls();this.persist();if(this.studio.previewKind==='camera'){this.studio.cameraPreviewId='source';this.studio.drawPreview();}
 
     }
 
@@ -457,7 +459,7 @@ export class StudioCameraWindow {
     }
     close(){this.motionGuide.hide();this.root.hidePopover();this.root.hidden=true;this.root.querySelectorAll('video,audio').forEach(media=>media.pause());this.studio.cameraButton?.setAttribute('aria-expanded','false');this.persist();}
 
-    dispose(){this.disposed=true;this.motionGuide.dispose();for(const [type,handler] of this.handlers)this.api.removeEventListener(type,handler);window.removeEventListener('resize',this.viewportChanged);this.sourceVideo.pause();this.root.remove();}
+    dispose(){this.disposed=true;this.unwatchLanguage?.();this.motionGuide.dispose();for(const [type,handler] of this.handlers)this.api.removeEventListener(type,handler);window.removeEventListener('resize',this.viewportChanged);this.sourceVideo.pause();this.root.remove();}
 
 }
 

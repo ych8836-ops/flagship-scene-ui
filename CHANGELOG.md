@@ -1,3 +1,10 @@
+# 0.1.1 — Korean / English interface
+
+- Added a header language switch, browser-language default and persistent local preference.
+- Translated studio/camera menus, settings, hover guides, accessibility labels, progress and known application errors using offline message tables.
+- Kept prompts, dialogue, names, filenames, canonical option values and generation graphs separate from display text. Language changes retain existing inputs, focus, scroll and video playback position without queuing work.
+- Added pinned DOM tests for bilingual behavior, data isolation, hover behavior, message coverage and cleanup; existing UI/SDK tests remain enabled.
+
 # 0.1.0 — SDK public candidate
 
 - Isolated self-hosted official Comfy SDK execution, job recovery/events/cancellation and app-only launcher/stop controls.

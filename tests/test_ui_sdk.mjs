@@ -12,6 +12,7 @@ import {applyCameraSettings,cameraTimelineInputs} from '../custom_nodes/ComfyUI-
 import {CAMERA_GUIDE_MODELS} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_corrections.js';
 import * as cameraGraph from '../custom_nodes/ComfyUI-H3-R2V-CameraLipLock/web/camera_dynamic_graph.js';
 import * as sequence from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/sequence.js';
+import * as localization from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/i18n.js';
 
 class Element {
     constructor(tag) {
@@ -84,7 +85,7 @@ globalThis.window={innerWidth:1600,innerHeight:1000,addEventListener(){},removeE
 const schema=JSON.parse(fs.readFileSync(new URL('fixtures/schema.json',import.meta.url),'utf8')).H3R2VCameraTimeline;
 const runtime=JSON.parse(fs.readFileSync(new URL('fixtures/runtime.json',import.meta.url),'utf8'));
 class TestCameraWindow extends StudioCameraWindow {constructor(studio,api){super(studio,api,async()=>({...cameraGraph,materializeCameraWorkflow:original=>cameraGraph.materializeCameraWorkflow(original,async()=>structuredClone(runtime))}));}}
-const context=vm.createContext({StudioSDKEvents:class {},document,window,app,api,StudioActionPreview,StudioCameraWindow:TestCameraWindow,StudioDockLayout,StudioLivePreview,PreviewNodes,previewNodeModel,nodeLocation,...sequence,
+const context=vm.createContext({StudioSDKEvents:class {},document,window,app,api,StudioActionPreview,StudioCameraWindow:TestCameraWindow,StudioDockLayout,StudioLivePreview,PreviewNodes,previewNodeModel,nodeLocation,...sequence,...localization,
     URL,URLSearchParams,File,Blob,localStorage,IntersectionObserver,ResizeObserver,requestAnimationFrame,console,setInterval:()=>0,clearInterval(){},setTimeout,clearTimeout});
 new vm.Script(source+'\nglobalThis.Studio=EndlessStudio;').runInContext(context);
 const config=JSON.parse(fs.readFileSync(new URL('fixtures/config_test.json',import.meta.url),'utf8'));
