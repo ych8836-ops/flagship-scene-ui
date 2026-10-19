@@ -1,0 +1,8 @@
+{
+  "comfy_python": "D:/ComfyUI_portable/python_embeded/python.exe",
+  "sdk_python": ".sdk-venv/Scripts/python.exe",
+  "models_directory": "D:/ComfyUI_portable/ComfyUI/models",
+  "ports": {"comfy": 18881, "proxy": 18882, "sdk_service": 18883},
+  "nvidia_vfx_python": "",
+  "nvoffruc_dll": ""
+}

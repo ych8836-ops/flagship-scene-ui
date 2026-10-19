@@ -1,0 +1,346 @@
+{
+  "H3R2VCameraTimeline": {
+    "input": {
+      "required": {
+        "source_video": [
+          "STRING",
+          {
+            "default": "",
+            "multiline": false,
+            "placeholder": "Upload a source video in the UI"
+          }
+        ],
+        "camera_plan_json": [
+          "STRING",
+          {
+            "default": "{\n  \"segments\": [\n    {\n      \"start_frame\": 0,\n      \"end_frame\": 124,\n      \"shot\": \"wide shot\",\n      \"movement\": \"slow dolly in\",\n      \"speed\": \"slow\",\n      \"strength\": 0.35\n    },\n    {\n      \"start_frame\": 124,\n      \"end_frame\": 248,\n      \"shot\": \"medium shot\",\n      \"movement\": \"smooth tracking shot\",\n      \"speed\": \"moderate\",\n      \"strength\": 0.45\n    },\n    {\n      \"start_frame\": 248,\n      \"end_frame\": 372,\n      \"shot\": \"close-up\",\n      \"movement\": \"static camera\",\n      \"speed\": \"very slow\",\n      \"strength\": 0.2\n    }\n  ]\n}",
+            "multiline": true
+          }
+        ],
+        "source_fps": [
+          "FLOAT",
+          {
+            "default": 24.0,
+            "min": 1.0,
+            "max": 120.0,
+            "step": 0.01
+          }
+        ]
+      },
+      "optional": {
+        "edit_strength": [
+          "FLOAT",
+          {
+            "default": 0.95,
+            "min": 0.7,
+            "max": 1.0,
+            "step": 0.05,
+            "tooltip": "Camera regeneration strength. 0.95 is recommended; lower values preserve more of the original view but weaken camera changes."
+          }
+        ],
+        "expected_segments": [
+          "INT",
+          {
+            "default": 0,
+            "min": 0,
+            "max": 64
+          }
+        ],
+        "lora_name": [
+          [
+            "minimax\\minimax_h3_ref_lora_layer20-49adaln_proj_rank_256_bf16.safetensors"
+          ]
+        ],
+        "lora_strength": [
+          "FLOAT",
+          {
+            "default": 1.0,
+            "min": 0.0,
+            "max": 2.0,
+            "step": 0.05
+          }
+        ],
+        "sage_enabled": [
+          "BOOLEAN",
+          {
+            "default": true
+          }
+        ],
+        "spectrum_enabled": [
+          "BOOLEAN",
+          {
+            "default": false
+          }
+        ],
+        "steps": [
+          "INT",
+          {
+            "default": 8,
+            "min": 1,
+            "max": 100
+          }
+        ],
+        "aspect_ratio": [
+          [
+            "source",
+            "16:9",
+            "9:16",
+            "1:1",
+            "4:3",
+            "3:4",
+            "21:9",
+            "9:21",
+            "3:2",
+            "2:3",
+            "4:5",
+            "5:4",
+            "1:2",
+            "2:1",
+            "custom"
+          ],
+          {
+            "default": "source"
+          }
+        ],
+        "megapixels": [
+          "FLOAT",
+          {
+            "default": 0.5,
+            "min": 0.1,
+            "max": 4.0,
+            "step": 0.05
+          }
+        ],
+        "custom_width": [
+          "INT",
+          {
+            "default": 960,
+            "min": 32,
+            "max": 4096,
+            "step": 32
+          }
+        ],
+        "custom_height": [
+          "INT",
+          {
+            "default": 544,
+            "min": 32,
+            "max": 4096,
+            "step": 32
+          }
+        ],
+        "lip_sync_strict": [
+          "BOOLEAN",
+          {
+            "default": true,
+            "tooltip": "Pins exact source audio into H3 while sampling. Spectrum is automatically disabled; Sage remains available."
+          }
+        ],
+        "segment_preview": [
+          "BOOLEAN",
+          {
+            "default": true,
+            "tooltip": "Encode each completed camera segment to a temporary MP4 and show it in the All-in-One timeline."
+          }
+        ],
+        "unet_name": [
+          [
+            "minimax_h3_fl2va_pruned_int8_convrot.safetensors"
+          ],
+          {
+            "default": "minimax_h3_fl2va_pruned_int8_convrot.safetensors"
+          }
+        ],
+        "upscale_enabled": [
+          "BOOLEAN",
+          {
+            "default": false,
+            "tooltip": "Insert SRFPTyp video restoration between final video assembly and Save Video."
+          }
+        ],
+        "upscale_scale": [
+          "FLOAT",
+          {
+            "default": 2.0,
+            "min": 1.0,
+            "max": 4.0,
+            "step": 0.05
+          }
+        ],
+        "upscale_quality": [
+          [
+            "Ultra",
+            "High",
+            "High-Bitrate Ultra",
+            "High-Bitrate High"
+          ],
+          {
+            "default": "Ultra"
+          }
+        ],
+        "upscale_restore_mode": [
+          [
+            "Auto Scan (Clean/Chain90)",
+            "Deblur Low",
+            "Deblur Medium",
+            "Denoise Low",
+            "Denoise Low + Deblur Low",
+            "Chain Late Recovery 90"
+          ],
+          {
+            "default": "Auto Scan (Clean/Chain90)"
+          }
+        ],
+        "upscale_quality_target": [
+          [
+            "100% Restore",
+            "105% Master",
+            "110% Master"
+          ],
+          {
+            "default": "110% Master"
+          }
+        ],
+        "upscale_color_treatment": [
+          [
+            "Off",
+            "Auto Natural",
+            "Auto Bright"
+          ],
+          {
+            "default": "Auto Natural"
+          }
+        ],
+        "upscale_output_quality": [
+          "INT",
+          {
+            "default": 95,
+            "min": 80,
+            "max": 99,
+            "step": 1
+          }
+        ],
+        "upscale_encode_preset": [
+          [
+            "medium",
+            "slow",
+            "slower"
+          ],
+          {
+            "default": "slow"
+          }
+        ],
+        "upscale_temporal_mode": [
+          [
+            "Auto Temporal",
+            "Face Lock",
+            "Action Stable",
+            "Off"
+          ],
+          {
+            "default": "Auto Temporal"
+          }
+        ],
+        "upscale_subject_recovery": [
+          [
+            "Auto",
+            "Full Shot Strong",
+            "Off"
+          ],
+          {
+            "default": "Auto"
+          }
+        ],
+        "upscale_output_mode": [
+          [
+            "SDR",
+            "SDR 10bit",
+            "HDR"
+          ],
+          {
+            "default": "SDR"
+          }
+        ]
+      }
+    },
+    "input_order": {
+      "required": [
+        "source_video",
+        "camera_plan_json",
+        "source_fps"
+      ],
+      "optional": [
+        "edit_strength",
+        "expected_segments",
+        "lora_name",
+        "lora_strength",
+        "sage_enabled",
+        "spectrum_enabled",
+        "steps",
+        "aspect_ratio",
+        "megapixels",
+        "custom_width",
+        "custom_height",
+        "lip_sync_strict",
+        "segment_preview",
+        "unet_name",
+        "upscale_enabled",
+        "upscale_scale",
+        "upscale_quality",
+        "upscale_restore_mode",
+        "upscale_quality_target",
+        "upscale_color_treatment",
+        "upscale_output_quality",
+        "upscale_encode_preset",
+        "upscale_temporal_mode",
+        "upscale_subject_recovery",
+        "upscale_output_mode"
+      ]
+    },
+    "is_input_list": false,
+    "output": [
+      "IMAGE",
+      "AUDIO",
+      "STRING",
+      "VHS_VIDEOINFO",
+      "FLOAT",
+      "FLOAT",
+      "INT",
+      "INT",
+      "H3_CAMERA_SETTINGS",
+      "INT"
+    ],
+    "output_is_list": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "output_name": [
+      "images",
+      "audio",
+      "camera_plan",
+      "video_info",
+      "fps",
+      "edit_strength",
+      "width",
+      "height",
+      "model_settings",
+      "steps"
+    ],
+    "name": "H3R2VCameraTimeline",
+    "display_name": "H3 R2V Camera Timeline (All-in-One UI)",
+    "description": "",
+    "python_module": "custom_nodes.ComfyUI-Workflow-Encrypt-master",
+    "category": "MiniMax H3/R2V",
+    "output_node": true,
+    "has_intermediate_output": false,
+    "search_aliases": []
+  }
+}
