@@ -18,18 +18,23 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1969,
-      "sha256": "ec0038e580e9a0bb9aa5138483c6ed05264f7782e0a9d556fc455a883334c986"
+      "bytes": 2488,
+      "sha256": "058ae5be12be0b7827e1d65122858d70fdf3aaf8941745d43c7da179645138a7"
     },
     {
       "path": "LICENSE",
-      "bytes": 1244,
-      "sha256": "3d6a40c2b523daba7502a6c3a78a7c644fe27c3192ae0fa1fe8d7c4f86b6d150"
+      "bytes": 34523,
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 912,
+      "sha256": "61c140b33da939b29b8ffd2f2094ef3b27d78e075c86e139730a9df21d07d260"
     },
     {
       "path": "README.md",
-      "bytes": 9204,
-      "sha256": "47d16c41b333cb1f0576ac12b3af37a4783f6841418976eb6ee9cad8b2c27739"
+      "bytes": 9402,
+      "sha256": "290f26c26f6b7bde5f11a39c3bb88dc18ca7b59602725cf47650ece84c439b3f"
     },
     {
       "path": "Start.cmd",
@@ -53,8 +58,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 3408,
-      "sha256": "50c585e7a177680cf1b98c17c40113f4c80fb0e39118b15ba485663b8c84ee61"
+      "bytes": 3470,
+      "sha256": "a8cb4e590dd797e4364d7b425ed6d78c6781fbbe8295ffd7b59d53c5344a1a26"
     },
     {
       "path": "bootstrap.py",
@@ -69,7 +74,7 @@
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/__init__.py",
       "bytes": 40426,
-      "sha256": "ee81167d215f29ed53d1ebeef5fc34ac3973614be1b19b51a52303c2abb9105f"
+      "sha256": "aeabbae4d4fdb33f831ecf6bce09db57dccd5e9ead84eddae1410f83232d9cca"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/dependencies.py",
@@ -472,6 +477,11 @@
       "sha256": "12620d3ca843a953c9086818210e7583ee5e5a0ac634fb84e16dbcabb9f32c49"
     },
     {
+      "path": "docs/LICENSING.md",
+      "bytes": 3857,
+      "sha256": "0834dbc64059e56a6de63df7a6279abbda6505c50e28307cbf2b10c8b625bb99"
+    },
+    {
       "path": "docs/MODELS.md",
       "bytes": 6033,
       "sha256": "a0239bbb7082a75e4ba10bd9b29448837bbf4cb1a461938edcbd27e3d35c6c72"
@@ -483,8 +493,8 @@
     },
     {
       "path": "docs/RELEASE_KO.md",
-      "bytes": 4506,
-      "sha256": "6b37721943925ccfe318605b3a8ad1bfd2a54331f1e8c5cde5c992e794c4a876"
+      "bytes": 4814,
+      "sha256": "4a12c68f1b58f1e7a5c4eb9c5484563a3885c33149befb125808e64071ddbae1"
     },
     {
       "path": "docs/VALIDATION.md",
@@ -523,13 +533,13 @@
     },
     {
       "path": "package-lock.json",
-      "bytes": 19058,
-      "sha256": "a7effaaa8fb2205016928870c05f6ff0ce2b2330e82ffc9efcd3505421355aa5"
+      "bytes": 19068,
+      "sha256": "40d345369e627676b43ea2961677502c72fab9c8d74ed0fc09c18bec79cc052d"
     },
     {
       "path": "package.json",
-      "bytes": 409,
-      "sha256": "641da906d7f1c60afec7ae22c8f732ef4800336e1165dfca764231660c347f28"
+      "bytes": 419,
+      "sha256": "f5e417ce98390aa26c01c4d0a45ab2b8fe6eb3251b42b63d495c7d649cfb26d4"
     },
     {
       "path": "run.py",

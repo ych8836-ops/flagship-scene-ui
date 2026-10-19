@@ -1,0 +1,19 @@
+Flagship Scene UI
+Copyright (c) 2026 Flagship Scene UI contributors
+
+Original Flagship code in version 0.1.3 and later is licensed under the
+GNU Affero General Public License, version 3 only (AGPL-3.0-only).
+The full, unmodified license text is in LICENSE.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See LICENSE for details.
+
+Explicit third-party notices and adjacent licenses remain applicable.
+In particular, the restoration source retains Apache-2.0 and the upstream
+FaceRefine source/patch attribution retains its MIT notice. The third-party
+code is not relicensed by this notice. See THIRD_PARTY_NOTICES.md and
+docs/LICENSING.md for scope and the previous MIT release history.
+
+Project and corresponding release source:
+https://github.com/ych8836-ops/flagship-scene-ui

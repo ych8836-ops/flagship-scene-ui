@@ -1,3 +1,10 @@
+# 0.1.3 — AGPL license for original Flagship code
+
+- Changed original Flagship code from MIT to AGPL-3.0-only for this and subsequent releases; included the full official GNU license and project notice.
+- Updated package metadata and documented the scope, corresponding-source obligations and previous MIT release history.
+- Preserved third-party MIT/Apache-2.0 notices, dependency licenses, historical releases and the original Comfy installation.
+- No generation, assembly, camera, upscale or UI behavior changes.
+
 # 0.1.2 — Continuous Endless assembly in normal mode
 
 - Corrected normal-mode assembly to blend the full continuous chain with the upstream Endless AV stitcher, using saved AV archives.

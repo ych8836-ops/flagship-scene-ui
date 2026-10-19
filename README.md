@@ -82,6 +82,6 @@ See the [included custom-node inventory](docs/CUSTOM_NODES.md) for the four sour
 
 An unused historical NVOFA bridge requiring a separate retired helper is excluded. The studio's restoration path uses `RTXVideoVSRRestore` and its included inline temporal helpers.
 
-Own project code is MIT; existing Apache-2.0 restoration source retains its adjacent license. The face-refiner integration is an attributed patch to an external MIT project, not a claim of authorship of the upstream face tracker. Model/runtime terms remain with their publishers.
+Starting with version 0.1.3, original Flagship project code is licensed under **AGPL-3.0-only**; existing Apache-2.0 restoration source retains its adjacent license. The face-refiner integration is an attributed patch to an external MIT project, not a claim of authorship of the upstream face tracker. Model/runtime terms remain with their publishers. See [license scope and version history](docs/LICENSING.md). Earlier MIT releases remain available under their original terms.
 
 Prepared for [Open Source Higgsfield](https://comfy.org/open-source-higgsfield/) using the [Comfy Developer Platform](https://docs.comfy.org/development/api-development/sdks). Local readiness is separate from publishing or competition submission.

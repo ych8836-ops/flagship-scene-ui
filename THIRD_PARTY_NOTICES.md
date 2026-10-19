@@ -2,7 +2,7 @@
 
 | Component | Origin | Distribution in this source repository |
 | --- | --- | --- |
-| Studio UI, project/scene orchestration, SDK service, camera adapters | Flagship Scene UI contributors | Source, MIT |
+| Studio UI, project/scene orchestration, SDK service, camera adapters | Flagship Scene UI contributors | Original source, AGPL-3.0-only from 0.1.3; see [scope](docs/LICENSING.md) |
 | `custom_nodes/ComfyUI-RTX-Video-Restoration` | Existing restoration wrapper source | Source under its retained Apache-2.0 `LICENSE`; proprietary implementations/DLLs excluded |
 | Comfy SDK and API Proxy | [Comfy-Org SDK](https://github.com/Comfy-Org/comfy-python-sdk), [Proxy](https://github.com/Comfy-Org/comfy-api-proxy) | Dependencies installed in a separate environment; not vendored |
 | MiniMax H3 execution engine | [ComfyUI](https://github.com/Comfy-Org/ComfyUI) | Not bundled; setup copies the user's selected source into the private runtime |
