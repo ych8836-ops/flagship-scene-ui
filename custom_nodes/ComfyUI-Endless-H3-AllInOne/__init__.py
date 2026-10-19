@@ -116,8 +116,6 @@ def reconcile(project_id):
 
 
 def check_assets(plan, index, action):
-    if action == 'assemble' and not plan.get('sequence_mode'):
-        return
     if os.environ.get('FLAGSHIP_SDK_TEST_CPU') == '1':
         raise ProjectError('CPU 검증 모드입니다. H3 영상 테스트는 GPU 실행 파일로 시작해 주세요.')
     s = plan['settings']
@@ -180,8 +178,6 @@ def check_assets(plan, index, action):
 
 
 def check_audio_duration(project, job):
-    if job['action'] == 'assemble' and not job['plan'].get('sequence_mode'):
-        return
     s = job['plan']['settings']
     if not s['audio_file']:
         return
@@ -772,4 +768,4 @@ NODE_DISPLAY_NAME_MAPPINGS = {'EndlessH3StitchScene': 'Flagship · Endless 씬 �
                              'EndlessH3BackgroundFrame': 'Flagship · 첫 클립 배경 화면',
                              'EndlessH3ProjectCommit': 'Flagship · 완료 기록'}
 WEB_DIRECTORY = './web'
-__version__ = '0.1.1'
+__version__ = '0.1.2'

@@ -113,6 +113,8 @@ def overlap_frames(plan, index):
 
 
 def scene_ranges(plan, last):
+    if not plan.get('sequence_mode'):
+        return [(1, last)]
     ranges = []
     first = 1
     for index in range(2, last + 1):

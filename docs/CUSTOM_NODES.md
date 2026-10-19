@@ -13,7 +13,7 @@ The UI and SDK service are also included. Node names describe their role, not a 
 
 ## Studio
 
-`EndlessH3AllInOne`, `EndlessH3BackgroundFrame`, `EndlessH3ConcatClips`, `EndlessH3ConcatScenes`, `EndlessH3OutputVideo`, `EndlessH3ProjectCommit`, `EndlessH3StitchScene`.
+`EndlessH3AllInOne`, `EndlessH3BackgroundFrame`, `EndlessH3ConcatClips` (legacy helper; not the normal/sequence assembly path), `EndlessH3ConcatScenes`, `EndlessH3OutputVideo`, `EndlessH3ProjectCommit`, `EndlessH3StitchScene`.
 
 The scene stitch node orchestrates the separately installed upstream Endless stitcher. It does not rebrand that algorithm as a new Flagship algorithm.
 

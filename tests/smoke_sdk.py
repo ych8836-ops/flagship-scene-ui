@@ -47,19 +47,26 @@ def main():
         store=ProjectStore(ROOT/'runtime/data/output');project=store.load(pid)
         folder=store.folder(pid)/'jobs/fixture';folder.mkdir(parents=True)
         video=folder/'video.mp4';video.write_bytes(downloaded.read_bytes())
-        latent=folder/'not_a_latent.txt';latent.write_text('Normal FFmpeg merge must not decode this fixture.')
+        latent=folder/'not_a_latent.txt';latent.write_text('Ledger fixture only; not used to test AV assembly.')
         project['clips']['1']=dict(index=1,job='fixture',video=video.relative_to(store.output).as_posix(),latent=latent.relative_to(store.output).as_posix(),frames=24,stale=False,history=[],created=time.time())
         store.write(project)
-        response=http.post('/endless_h3_aio/queue',json={'project_id':pid,'plan':project['plan'],'action':'assemble'})
+        # Exercise SDK output/ledger commit without H3 weights in CPU mode.
+        # Real normal/sequence assembly is covered separately by test_scene_assembly.py.
+        project,reserved=store.reserve(pid,project['plan'],'assemble')
+        project['jobs'][reserved['id']]['state']='queued';store.write(project)
+        fixture_graph=json.loads(json.dumps(graph))
+        fixture_graph['3']['inputs']['filename_prefix']=(store.folder(pid)/'jobs'/reserved['id']/'video').relative_to(store.output).as_posix()
+        fixture_graph['4']={'class_type':'EndlessH3ProjectCommit','inputs':{'video':['3',0],'project_id':pid,'job_id':reserved['id'],'frames':24}}
+        response=http.post('/endless_h3_aio/sdk/queue',json={'graph':fixture_graph,'request_key':str(uuid.uuid4())})
         response.raise_for_status();queued=response.json();merged=sdk.jobs.get(queued['prompt_id']).wait(timeout=60)
-        check('assembly_uses_official_sdk',merged.status=='succeeded')
+        check('synthetic_commit_uses_official_sdk',merged.status=='succeeded')
         current=http.get('/endless_h3_aio/project/'+pid).json()
-        check('commit_and_sdk_id',current['jobs'][queued['job_id']]['sdk_job_id']==merged.id and current['jobs'][queued['job_id']]['state']=='completed')
+        check('project_commit',current['jobs'][reserved['id']]['state']=='completed')
         check('active_job_released',current['active'] is None)
         check('gallery_export_exists',len(current['exports'])==1 and store.output_file(current['exports'][0]['video']).is_file())
         history=http.get('/history/'+merged.id).json()[merged.id]
         types={n['class_type'] for n in history['prompt'][2].values()}
-        check('normal_merge_no_vae','EndlessH3ConcatClips' in types and not any('VAE' in t for t in types))
+        check('synthetic_graph_has_commit','EndlessH3ProjectCommit' in types and 'EmptyImage' in types)
         served=http.get('/extensions/ComfyUI-Endless-H3-AllInOne/studio.js')
         check('ui_served',served.status_code==200 and b'Flagship Scene UI' in served.content)
         check('full_korean_font_available',http.get('/extensions/ComfyUI-Endless-H3-AllInOne/fonts/NotoSansKR-variable.ttf').status_code==200)

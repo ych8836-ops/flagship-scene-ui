@@ -346,21 +346,8 @@ def build_scene_assembly_prompt(project, job, store, *, preview=False):
 
 
 def build_assembly_prompt(project, job, store, *, preview=False):
-    if job['plan'].get('sequence_mode'):
-        return build_scene_assembly_prompt(project, job, store, preview=preview)
-    directory = store.folder(project['id']) / 'jobs' / job['id']
-    if not preview:
-        directory.mkdir(parents=True, exist_ok=True)
-    prefix = directory.relative_to(store.output).as_posix()
-    g = Graph()
-    source = g.add('EndlessH3ConcatClips', project_id=project['id'], job_id=job['id'])
-    video = add_upscale(g, source, job['plan']['settings']) if job['plan']['settings']['upscale'] else source
-    saved = g.add('SaveVideo', video=video, filename_prefix=prefix + '/video',
-                  format='auto', **{'format.codec': 'auto'})
-    if not preview:
-        g.add('EndlessH3ProjectCommit', video=saved, project_id=project['id'], job_id=job['id'],
-              frames=g.slot(source, 1))
-    return g.prompt
+    # Both modes need Endless AV overlap blending. Normal mode is one continuous range.
+    return build_scene_assembly_prompt(project, job, store, preview=preview)
 
 
 def build_prompt(project, job, store, *, preview=False):

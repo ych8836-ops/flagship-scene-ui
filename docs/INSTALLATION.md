@@ -56,5 +56,5 @@ CPU mode checks the SDK transport and synthetic video/FFmpeg operations. It reje
 2. `setup.py`에 사용할 ComfyUI 폴더와 Python 경로를 지정합니다. 경로를 생략하면 어느 폴더인지 묻습니다. 원본은 읽기만 하고 앱 폴더에 실행용 사본을 만듭니다.
 3. 필수 외부 노드·모델·LoRA는 위 표와 [다운로드 목록](MODELS.md)을 따라 설치합니다. SDK 환경은 별도로 생성합니다.
 4. `Start.cmd` 실행 후 `http://127.0.0.1:18881`에서 예제 워크플로우를 불러옵니다. 새 프로젝트에서 실제 모델/LoRA를 선택합니다.
-5. 씬 안 클립은 Endless로 합치고, 씬 처리가 모두 끝나면 자동으로 FFmpeg로 최종 합본을 만듭니다. 일반 모드의 기존 FFmpeg 방식은 유지됩니다.
+5. 씬 안 클립은 Endless로 합치고, 씬 처리가 모두 끝나면 자동으로 FFmpeg로 최종 합본을 만듭니다. 일반 모드는 전체 연속 클립을 기존 Endless AV 방식으로 합칩니다. 일반 모드와 단일 씬은 추가 FFmpeg 연결 없이 완성된 Endless 결과를 저장합니다. 두 모드 모두 원본 AV 연결 파일을 보관해야 합니다.
 6. 종료는 `Stop.cmd`입니다. 원본 Comfy를 재시작하거나 중단하지 않습니다.

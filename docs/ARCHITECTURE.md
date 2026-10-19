@@ -24,9 +24,9 @@ The SDK key is stored before submission. Once an ID is known, recovery reads tha
 
 ## Scene assembly
 
-`scene_assembly.py` partitions approved clips by scene ID, runs the installed upstream Endless AV stitcher on one scene, aligns/trims its prefix once, and writes a scene MP4. Only its file manifest moves to the next scene node; decoded images are not graph outputs cached for the entire project.
+`scene_assembly.py` treats normal mode as one continuous clip range. In sequence mode it partitions approved clips by scene ID, runs the installed upstream Endless AV stitcher on one scene, aligns/trims its prefix once, and writes a scene MP4. Only its file manifest moves to the next scene node; decoded images are not graph outputs cached for the entire project.
 
-After every scene succeeds, `media_concat.py` joins scene files with FFmpeg video stream copy. Audio is aligned to actual delivered frame counts and AAC-encoded; it is not advertised as lossless audio copying. Optional final upscaling follows the existing final-output setting. Normal mode keeps the original FFmpeg-only saved-clip path.
+When there are multiple completed scenes, `media_concat.py` joins scene files with FFmpeg video stream copy. Audio is aligned to actual delivered frame counts and AAC-encoded; it is not advertised as lossless audio copying. Optional final upscaling follows the existing final-output setting. Normal mode passes its single encoded Endless result directly to final saving/upscaling, without an additional FFmpeg join or audio re-encode. A one-scene sequence also takes this direct path. Both modes require the approved AV archives; there is no silent MP4-only fallback.
 
 This limits assembly's live decoded data to a scene, not necessarily a small constant. A very long/high-resolution single scene can still consume substantial RAM. Scene-internal decoding and encoding still cost time. Reassembling in a new job does not currently reuse a persistent scene cache.
 

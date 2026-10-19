@@ -18,8 +18,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1364,
-      "sha256": "92ed20577519d88aa764df0024902691e835bd05c0e48c2cc27cf19651694f1c"
+      "bytes": 1969,
+      "sha256": "ec0038e580e9a0bb9aa5138483c6ed05264f7782e0a9d556fc455a883334c986"
     },
     {
       "path": "LICENSE",
@@ -28,8 +28,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8974,
-      "sha256": "7d511ca56d4a69a8906a28b3de6e17161e7332b75d3f7bc46efc3843ca1a9b2f"
+      "bytes": 9204,
+      "sha256": "47d16c41b333cb1f0576ac12b3af37a4783f6841418976eb6ee9cad8b2c27739"
     },
     {
       "path": "Start.cmd",
@@ -68,8 +68,8 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/__init__.py",
-      "bytes": 40600,
-      "sha256": "e25a6e240b418d2789fff6fcb248a8f691a13ce8233fa475c2b1e72e1236bd76"
+      "bytes": 40426,
+      "sha256": "ee81167d215f29ed53d1ebeef5fc34ac3973614be1b19b51a52303c2abb9105f"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/dependencies.py",
@@ -88,13 +88,13 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/prompt_builder.py",
-      "bytes": 33741,
-      "sha256": "ce6fff3ae7a010903b013a130d4cab3b6846a35e90c95fcaeabe4fed78d01bcf"
+      "bytes": 33043,
+      "sha256": "c01c5cd51db36d3d289e6226117202df72e4a99dd666a5ec91d78e63e7ce016d"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/scene_assembly.py",
-      "bytes": 5893,
-      "sha256": "cb192a84fa40de1851c8d552da0db038814123fe7c7f7100f6ea6e33202d76c2"
+      "bytes": 6119,
+      "sha256": "15e4f07476bf4cc7c1ae414a8e16c0868e4d3bda89de9d8948c7ddf024bd900f"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/sdk_bridge.py",
@@ -103,8 +103,8 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/sequence_plan.py",
-      "bytes": 5536,
-      "sha256": "a46a112972cb577fe943ffd39fca7f742d3a22607c57f156ebb35a031282a408"
+      "bytes": 5603,
+      "sha256": "e4a41ac255a807789a88554a5fd64ee2d9ca514ee428d8b2aeed3672f3be8891"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_character_renderer.js",
@@ -453,18 +453,18 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "bytes": 3131,
-      "sha256": "b6391a5589df85a7bc0ed5b0efaa07038dab2bd1386499d9d37e95dbe3ec1ee8"
+      "bytes": 3430,
+      "sha256": "52ef2a55dbcc7b815afa2bcdf451f3eb0725db538b18071f013883181f1f3352"
     },
     {
       "path": "docs/CUSTOM_NODES.md",
-      "bytes": 4486,
-      "sha256": "3bb6c248baa0cb88a2f8dbd1ff7f6d819bfbeb5281f2e56ae6843644aca650f4"
+      "bytes": 4541,
+      "sha256": "aa3fe6bc996f2d18478f7011620148757ed665c7b56f42c0d5f2d91ed241f1ad"
     },
     {
       "path": "docs/INSTALLATION.md",
-      "bytes": 5817,
-      "sha256": "61b4172854c90b90a0c079740d7ac7b8f9de6c6c6038f7db02a8af135214bc1d"
+      "bytes": 6018,
+      "sha256": "f377d9ef891f15785f8f9ab96acb68ab72291ed516c95e7061e01ec3cbfa4626"
     },
     {
       "path": "docs/LANGUAGE.md",
@@ -478,18 +478,18 @@
     },
     {
       "path": "docs/PROMPT_RULES_KO.md",
-      "bytes": 36948,
-      "sha256": "450fe59a0083ccfb52c11703dd0bdfe721d0924e72be709d351bc716387954f3"
+      "bytes": 37163,
+      "sha256": "8876484617ea640269fcceb4d76282c371ce5182e9a432ee44cab82383e5a7f2"
     },
     {
       "path": "docs/RELEASE_KO.md",
-      "bytes": 4330,
-      "sha256": "68d740604f9f0916d2daa01fec64f2c07f11d29737a51ea171b1e7240b41996f"
+      "bytes": 4506,
+      "sha256": "6b37721943925ccfe318605b3a8ad1bfd2a54331f1e8c5cde5c992e794c4a876"
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 4882,
-      "sha256": "5234431fb77470405c8b41dfa40cfab361ac4ee27014d36df0cc4134057e5153"
+      "bytes": 5183,
+      "sha256": "a6ca9d99e7c7ef7aff8a9da20655b63e909b53545c415abb54179d52fad9977f"
     },
     {
       "path": "examples/Flagship_Scene_UI.json",
@@ -524,12 +524,12 @@
     {
       "path": "package-lock.json",
       "bytes": 19058,
-      "sha256": "d6b3208a52d98577cda0652ab2c42a6ccdbb2acd7943b77127bc9d40c91c9e7e"
+      "sha256": "a7effaaa8fb2205016928870c05f6ff0ce2b2330e82ffc9efcd3505421355aa5"
     },
     {
       "path": "package.json",
       "bytes": 409,
-      "sha256": "da3633432eb4ff86e6e2e44e30b19677db1b954f8dfa61bb42e7de4b85583e70"
+      "sha256": "641da906d7f1c60afec7ae22c8f732ef4800336e1165dfca764231660c347f28"
     },
     {
       "path": "run.py",
@@ -568,8 +568,8 @@
     },
     {
       "path": "tests/smoke_sdk.py",
-      "bytes": 5305,
-      "sha256": "96cd0bf5b76abd8344e6aa6ea890a333dc71a808225bfc920f03c36d7d7e2ad4"
+      "bytes": 5897,
+      "sha256": "a3188fb174149aa538b5bcba00cd211f7c8a600eb6578968548b2a6a7a45f0f7"
     },
     {
       "path": "tests/test_dependencies.py",
@@ -583,13 +583,13 @@
     },
     {
       "path": "tests/test_plan_semantics.py",
-      "bytes": 2734,
-      "sha256": "ff1578f407627e938791db1c001add2231af3f61d75c50b03a7a20cc8ac6f279"
+      "bytes": 4386,
+      "sha256": "075d4030a916d3cbf160f0d60e68d6725a695ee1c308c850d5293bc13de180ff"
     },
     {
       "path": "tests/test_scene_assembly.py",
-      "bytes": 3938,
-      "sha256": "cd61584e4ca7776ecdfeccad7e2962b8299b1b0f885f334d8ccf7d27e91a3de4"
+      "bytes": 6593,
+      "sha256": "d547f1c8e22bfec2a55af63d29eadce5474f4cbc10807f82f23ff5521593bc96"
     },
     {
       "path": "tests/test_sdk_events.mjs",

@@ -1,3 +1,10 @@
+# 0.1.2 — Continuous Endless assembly in normal mode
+
+- Corrected normal-mode assembly to blend the full continuous chain with the upstream Endless AV stitcher, using saved AV archives.
+- Kept sequence assembly scene-local: Endless inside each scene, then automatic FFmpeg between completed scenes only.
+- Return a single completed Endless range directly, avoiding an unnecessary FFmpeg join/audio re-encode.
+- Added normal-chain, single-clip, fresh/continuing scene-boundary, AV timing and missing-archive checks. CPU SDK transport/commit fixtures are explicitly separate from AV assembly validation.
+
 # 0.1.1 — Korean / English interface
 
 - Added a header language switch, browser-language default and persistent local preference.

@@ -1,4 +1,4 @@
-"""Write one Endless scene at a time, then join its encoded files with FFmpeg."""
+"""Endless AV assembly for continuous chains; FFmpeg joins only distinct scenes."""
 from fractions import Fraction
 import json
 import os
@@ -14,8 +14,8 @@ from .sequence_plan import overlap_frames, scene_ranges
 def assembly_job(store, project_id, job_id):
     project = store.load(project_id)
     job = project['jobs'].get(job_id)
-    if not job or job['action'] != 'assemble' or not job['plan'].get('sequence_mode'):
-        raise ProjectError('시퀀스 합치기 작업을 찾을 수 없습니다.')
+    if not job or job['action'] != 'assemble':
+        raise ProjectError('합치기 작업을 찾을 수 없습니다.')
     if not 1 <= job['index'] <= len(job['plan']['clips']):
         raise ProjectError('씬 합치기 클립 범위가 올바르지 않습니다.')
     directory = (store.folder(project_id) / 'jobs' / job_id).resolve()
@@ -96,4 +96,8 @@ def concat_scenes(store, project_id, job_id, scene_manifest):
         expected = sum(project['clips'][str(i)]['frames'] for i in range(first, last + 1))
         if entry['frames'] != expected:
             raise ProjectError('씬 합본의 프레임 수가 현재 클립 기록과 다릅니다.')
+    # A continuous normal-mode chain (or a single scene) is already complete.
+    # Return the encoded Endless output directly; do not concatenate/re-encode its audio.
+    if len(entries) == 1:
+        return store.output_file(entries[0]['video']), entries[0]['frames']
     return concat_files([store.output_file(x['video']) for x in entries], [x['frames'] for x in entries], directory, label='씬')

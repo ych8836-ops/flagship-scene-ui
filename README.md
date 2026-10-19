@@ -15,7 +15,7 @@ The interface keeps three separate workspaces: settings and clip plans, preview 
 - **Reference routing:** common image/video/audio inputs, with `<Picture N>` or `@picture_N` selecting the required pictures per clip. I2V supports opening and optional closing images.
 - **Camera direction:** shot, angle, motion, lens, focus, numeric angle paths, and animated guides. Existing unreliable large-rotation presets were removed. Generative camera results are conditional, not calibrated physical camera guarantees.
 - **Dialogue-aware workflows:** shared lipsync audio, source-audio preservation and conservative face-repair eligibility checks. This is not a character-specific voice-LoRA router.
-- **Assembly:** within each scene, the upstream Endless AV stitcher blends the context overlap. Completed scenes are saved one at a time and automatically joined by FFmpeg. The final scene-to-scene video join uses stream copy, without VAE. Normal mode retains FFmpeg clip concatenation.
+- **Assembly:** within each scene, the upstream Endless AV stitcher blends the context overlap. Completed scenes are saved one at a time and automatically joined by FFmpeg. The final scene-to-scene video join uses stream copy, without VAE. Normal mode runs the upstream Endless AV stitcher across the entire continuous clip chain; it does not use FFmpeg clip concatenation.
 - **Optional NVIDIA upscaling:** gallery-selected exports, memory profiles, auto colour and output quality. Motion repair defaults to **Off**. NVIDIA runtimes are installed separately.
 - **Official SDK execution:** generation, retry, assembly, upscaling and camera jobs pass through the SDK service and official API proxy. Progress, previews and cancellation are scoped to the SDK job. An uncertain submission is not silently submitted again or redirected to a native queue.
 
@@ -48,13 +48,13 @@ Use [the safe cube example](examples/cube_sequence_plan.json) to learn the plan 
 1. Add scenes and their clips, or import the plan JSON.
 2. Use clip generation, all clips, or all clips plus assembly. The shared Generate control executes the selected action.
 3. Select an existing clip to regenerate only that clip. The revision graph and gallery preserve earlier results.
-4. Merge to run scene-local Endless stitching followed automatically by FFmpeg scene concatenation. Optional upscaling follows the existing final-output settings.
+4. Merge to run Endless stitching across the continuous chain in normal mode, or scene-local Endless stitching followed automatically by FFmpeg scene concatenation in sequence mode. Optional upscaling follows the existing final-output settings.
 
-Settings that define an existing run's geometry are protected. Make a new project for a new resolution. Keep generated AV archives if you need scene-local Endless reassembly; MP4s alone are sufficient only for the normal FFmpeg-only path.
+Settings that define an existing run's geometry are protected. Make a new project for a new resolution. Keep generated AV archives for reassembly in both modes. MP4s alone cannot supply the original AV context for Endless stitching.
 
 ## Verification and limits
 
-The independently installed public candidate passes actual SDK/proxy/Comfy CPU video submission, download, duplicate-key recovery, validation failures, project commit, gallery registration and FFmpeg assembly. UI DOM/event tests cover the three panels, camera editor and retained 99 hover guides. Scene overlap/AV timing is tested with deterministic decoder fixtures and real encoding/FFmpeg.
+The independently installed public candidate passes actual SDK/proxy/Comfy CPU video submission, download, duplicate-key recovery, validation failures, project commit, gallery registration. Normal and sequence assembly are checked separately with the pinned upstream stitcher. UI DOM/event tests cover the three panels, camera editor and retained 99 hover guides. Scene overlap/AV timing is tested with deterministic decoder fixtures and real encoding/FFmpeg.
 
 Earlier isolated GPU comparisons produced identical decoded frames and audio for matching I2V, R2V and representative camera graphs; upscaling had small run-to-run differences. Those measurements describe those cases, not every preset or this release on every machine. [Validation details](docs/VALIDATION.md) distinguish these checks from manual browser, listening, long-video and low-VRAM review.
 
