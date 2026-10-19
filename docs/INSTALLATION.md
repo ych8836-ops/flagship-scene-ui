@@ -8,6 +8,8 @@ The source Comfy Python must already run ComfyUI/H3 successfully. Its packages a
 
 ## Dependency profiles
 
+Each adopted node pack and the original Endless workflow are acknowledged in [custom-node credits](../CREDITS.md), with maintainer names, pinned source links and core/optional roles.
+
 ```powershell
 python tools/install_dependencies.py --features core ui camera
 # Optional extra node packs:

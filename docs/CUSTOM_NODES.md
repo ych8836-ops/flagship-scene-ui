@@ -1,5 +1,7 @@
 # Included source and node inventory
 
+For externally adopted custom nodes, their maintainers, upstream links and required/optional roles, see [CREDITS.md](../CREDITS.md). The list below is the inventory of source/adapters included in this repository, not a list of algorithms independently invented by Flagship.
+
 This repository contains four project source packs, one registration adapter and two face-refiner integration nodes. It does not claim authorship of the H3 model, ComfyUI, the external Motion Context/Endless algorithm, CrossViewWarp, MoGe, FaceRefine tracking or NVIDIA implementations. Their origins and installation links are in [third-party notices](../THIRD_PARTY_NOTICES.md), [the dependency lock](../dependencies.lock.json) and [model links](MODELS.md).
 
 | Source pack | Function | Registered nodes |

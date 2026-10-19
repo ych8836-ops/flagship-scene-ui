@@ -22,6 +22,11 @@
       "sha256": "058ae5be12be0b7827e1d65122858d70fdf3aaf8941745d43c7da179645138a7"
     },
     {
+      "path": "CREDITS.md",
+      "bytes": 8146,
+      "sha256": "9b7cf619761a5ca892438e49715b1335ebb9beae4b629373feb00b5caeca0099"
+    },
+    {
       "path": "LICENSE",
       "bytes": 34523,
       "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
@@ -33,8 +38,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 9402,
-      "sha256": "290f26c26f6b7bde5f11a39c3bb88dc18ca7b59602725cf47650ece84c439b3f"
+      "bytes": 10923,
+      "sha256": "7abdb5cb2dceda4c9e0fe6de7b48b26aef5dc12c31cdfe1cea505d2067656d99"
     },
     {
       "path": "Start.cmd",
@@ -58,8 +63,8 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 3470,
-      "sha256": "a8cb4e590dd797e4364d7b425ed6d78c6781fbbe8295ffd7b59d53c5344a1a26"
+      "bytes": 3718,
+      "sha256": "807e787e866f99ced066f9f7ca0caf4f67976f7b4d7a8be7aa3db6950de0bcd4"
     },
     {
       "path": "bootstrap.py",
@@ -463,13 +468,13 @@
     },
     {
       "path": "docs/CUSTOM_NODES.md",
-      "bytes": 4541,
-      "sha256": "aa3fe6bc996f2d18478f7011620148757ed665c7b56f42c0d5f2d91ed241f1ad"
+      "bytes": 4816,
+      "sha256": "96dab4d7620178ff316a780754d25ad2642e5f57a84bd3b02701e2a63dff005a"
     },
     {
       "path": "docs/INSTALLATION.md",
-      "bytes": 6018,
-      "sha256": "f377d9ef891f15785f8f9ab96acb68ab72291ed516c95e7061e01ec3cbfa4626"
+      "bytes": 6202,
+      "sha256": "91a45b759aacb4a2a976ddf98719c706db10a2794c2c0ac82d41c212a3bea0a4"
     },
     {
       "path": "docs/LANGUAGE.md",

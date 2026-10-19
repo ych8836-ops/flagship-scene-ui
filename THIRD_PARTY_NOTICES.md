@@ -1,5 +1,7 @@
 # Source provenance
 
+The detailed [custom-node and workflow credits](CREDITS.md) name maintainers, pinned sources, adopted node IDs, core/optional roles and the original Endless v1.5 workflow by u/embryo10. These acknowledgements supplement the license notices below.
+
 | Component | Origin | Distribution in this source repository |
 | --- | --- | --- |
 | Studio UI, project/scene orchestration, SDK service, camera adapters | Flagship Scene UI contributors | Original source, AGPL-3.0-only from 0.1.3; see [scope](docs/LICENSING.md) |

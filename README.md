@@ -74,6 +74,14 @@ npm test
 
 The DOM tests intentionally mock WebGL and exercise its accessible fallback; they are not a manual browser visual certification. No test should submit a job to another ComfyUI installation.
 
+## Credits and workflow foundation
+
+Flagship Scene UI builds on [Endless MiniMax H3 v1.5 by u/embryo10](https://www.reddit.com/r/comfyui/comments/1wt5oe9/endless_minimax_h3_with_endless_lipsync_v15_less/), [NikoDemon80's Motion Context](https://github.com/NikoDemon80/ComfyUI-H3-Motion-Context) and [noEmbryo's AV stitcher / clip refiner](https://github.com/noembryo/ComfyUI-noEmbryo). These upstream workflows and algorithms are credited to their creators.
+
+Additional adopted projects are [KJNodes — kijai](https://github.com/kijai/ComfyUI-KJNodes), [VideoHelperSuite — Kosinkadink](https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite), [H3-FaceRefine — Carasibana](https://github.com/Carasibana/ComfyUI-H3-FaceRefine), [CrossViewWarp — cseti007](https://github.com/cseti007/ComfyUI-CrossViewWarp), [Spectrum — xmarre](https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3), [controlnet_aux — Fannovel16](https://github.com/Fannovel16/comfyui_controlnet_aux) and [YCNodes — yichengup](https://github.com/yichengup/ComfyUI-YCNodes-MiniMax-H3), together with their contributors. Some are optional helpers or extra-workflow dependencies; they are not all required or executed in the standard graph.
+
+See **[CREDITS.md](CREDITS.md)** for each project's role, pinned source, core/optional status and the distinction between our studio/adapters and upstream implementations. See [model/LoRA sources](docs/MODELS.md) for weights. Built-in ComfyUI nodes and SDK/proxy code retain their upstream attribution.
+
 ## Source and dependencies
 
 This repository publishes the Flagship UI, orchestration, adapters and our custom-node source. **No ComfyUI engine, external node implementation, Python environment, NVIDIA SDK/DLL, model, LoRA, private project or user media is bundled.** The installer downloads pinned external code/assets only when requested and verifies SHA256. External repositories remain separately attributed. [Installation](docs/INSTALLATION.md), [architecture](docs/ARCHITECTURE.md), [prompt rules](docs/PROMPT_RULES_KO.md), [credits and licensing](THIRD_PARTY_NOTICES.md).
