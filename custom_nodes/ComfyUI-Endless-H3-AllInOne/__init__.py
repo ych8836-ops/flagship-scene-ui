@@ -768,4 +768,4 @@ NODE_DISPLAY_NAME_MAPPINGS = {'EndlessH3StitchScene': 'Flagship · Endless 씬 �
                              'EndlessH3BackgroundFrame': 'Flagship · 첫 클립 배경 화면',
                              'EndlessH3ProjectCommit': 'Flagship · 완료 기록'}
 WEB_DIRECTORY = './web'
-__version__ = '0.1.3'
+__version__ = '0.1.4'

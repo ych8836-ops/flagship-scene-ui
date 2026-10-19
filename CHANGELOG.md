@@ -1,3 +1,9 @@
+# 0.1.4 - Camera directing module loading fix
+
+- Resolve the camera graph engine relative to extension assets instead of using the API URL formatter, which added an invalid `/api` prefix and caused a 404 on opening camera directing.
+- Refresh the camera window import version and add regression checks for root and subpath deployments.
+- Frontend-only behavior fix; reload the browser to apply. No generation settings or original ComfyUI installation changes.
+
 # 0.1.3 — AGPL license for original Flagship code
 
 - Changed original Flagship code from MIT to AGPL-3.0-only for this and subsequent releases; included the full official GNU license and project notice.

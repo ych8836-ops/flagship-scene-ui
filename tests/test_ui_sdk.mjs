@@ -6,13 +6,19 @@ import assert from 'node:assert/strict';
 import {StudioDockLayout} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/studio_layout.js';
 import {PreviewNodes, previewNodeModel, nodeLocation} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/preview_nodes.js';
 import {StudioLivePreview} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/live_preview.js';
-import {StudioCameraWindow} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_window.js';
+import {StudioCameraWindow,cameraEngineURL} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_window.js';
 import {SHOTS,ANGLES,MOVES,LENSES,FOCUS,EASINGS,cameraDirectionPrompt,normalizeCameraSegment,applyCameraDirections} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_controls.js';
 import {applyCameraSettings,cameraTimelineInputs} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_graph.js';
 import {CAMERA_GUIDE_MODELS} from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_corrections.js';
 import * as cameraGraph from '../custom_nodes/ComfyUI-H3-R2V-CameraLipLock/web/camera_dynamic_graph.js';
 import * as sequence from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/sequence.js';
 import * as localization from '../custom_nodes/ComfyUI-Endless-H3-AllInOne/web/i18n.js';
+
+for (const prefix of ['', '/comfy']) {
+    const base = `http://127.0.0.1:18881${prefix}/extensions/`;
+    assert.equal(cameraEngineURL(`${base}ComfyUI-Endless-H3-AllInOne/camera_window.js?v=test`), `${base}ComfyUI-H3-R2V-CameraLipLock/camera_dynamic_graph.js`);
+}
+console.log('PASS: camera engine resolves beside extension assets without the API prefix.');
 
 class Element {
     constructor(tag) {

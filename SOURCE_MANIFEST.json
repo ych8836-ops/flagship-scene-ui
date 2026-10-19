@@ -18,8 +18,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 2488,
-      "sha256": "058ae5be12be0b7827e1d65122858d70fdf3aaf8941745d43c7da179645138a7"
+      "bytes": 2955,
+      "sha256": "9917bcba86ee23ca891d66064367fe9e4aa303e55374cc73d70195328f93f737"
     },
     {
       "path": "CREDITS.md",
@@ -79,7 +79,7 @@
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/__init__.py",
       "bytes": 40426,
-      "sha256": "aeabbae4d4fdb33f831ecf6bce09db57dccd5e9ead84eddae1410f83232d9cca"
+      "sha256": "2fe8ae91f4b640c137140dc25c986e8744b6d28d8e575f1bf8c022fab7538a57"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/dependencies.py",
@@ -173,8 +173,8 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/camera_window.js",
-      "bytes": 30395,
-      "sha256": "2d3dd8dfbe0c0cd85998af2902d802b89d3303519d8cd7651b7e7dfba71f1c79"
+      "bytes": 30485,
+      "sha256": "2c527a09357bdb4fc019578144d46fa37a35da48bf677227b596f942573e3e32"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/i18n.js",
@@ -233,8 +233,8 @@
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/studio.js",
-      "bytes": 171393,
-      "sha256": "bf9080428e7c62fbfb08819f890397deeb385cd0f8bde0e8733c9c66ab888412"
+      "bytes": 171409,
+      "sha256": "1283a0ad86feac93a5e5ac880197a9ff4a518ebe109aabdb21a478a5d5c5f1b6"
     },
     {
       "path": "custom_nodes/ComfyUI-Endless-H3-AllInOne/web/studio_action_actor.js",
@@ -539,12 +539,12 @@
     {
       "path": "package-lock.json",
       "bytes": 19068,
-      "sha256": "40d345369e627676b43ea2961677502c72fab9c8d74ed0fc09c18bec79cc052d"
+      "sha256": "316eaec636e648222bf1ac895c923c661c8c1d062459cf7a03d3d4879e227ca1"
     },
     {
       "path": "package.json",
       "bytes": 419,
-      "sha256": "f5e417ce98390aa26c01c4d0a45ab2b8fe6eb3251b42b63d495c7d649cfb26d4"
+      "sha256": "82711f6f93fb601d33421562dd0333f707cd908fc29f514a1208129beb66454d"
     },
     {
       "path": "run.py",
@@ -618,8 +618,8 @@
     },
     {
       "path": "tests/test_ui_sdk.mjs",
-      "bytes": 46882,
-      "sha256": "44ca7f0b6c2e9722ad5e0c96513b42bb2ecd7e7a91185fb4d4feeec396e3b152"
+      "bytes": 47263,
+      "sha256": "9b6185a0aa80b1f7644b35c5f919e80a5c7b39703b631a4cc1da267131d05596"
     },
     {
       "path": "tools/check_installation.py",

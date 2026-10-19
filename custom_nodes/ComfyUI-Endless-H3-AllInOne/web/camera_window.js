@@ -18,11 +18,13 @@ function el(tag,text,cls){const node=document.createElement(tag);if(text!==undef
 
 const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
 
+export const cameraEngineURL = (moduleURL = import.meta.url) => new URL('../ComfyUI-H3-R2V-CameraLipLock/camera_dynamic_graph.js', moduleURL).href;
+
 let windowId=0;
 
 export class StudioCameraWindow {
 
-    constructor(studio,api,engineLoader=async()=>import(api.apiURL('/extensions/ComfyUI-H3-R2V-CameraLipLock/camera_dynamic_graph.js'))){
+    constructor(studio,api,engineLoader=async()=>import(cameraEngineURL())){
 
         this.studio=studio;this.api=api;this.engineLoader=engineLoader;
 

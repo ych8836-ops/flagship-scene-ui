@@ -2,7 +2,7 @@ import { app } from '../../../scripts/app.js';
 import { api } from '../../../scripts/api.js';
 import { StudioSDKEvents } from './sdk_events.js';
 import {StudioLocalizer, rawUI, uiParts, bindUI, formatUI, translateUI, getUILanguage, getUILocale, setUILanguage} from './i18n.js';
-import { StudioCameraWindow } from './camera_window.js?v=i18n_20261019';
+import { StudioCameraWindow } from './camera_window.js?v=camera_static_import_20261019';
 import { StudioActionPreview } from './studio_action_preview.js?v=i18n_20261019';
 import { StudioLivePreview } from './live_preview.js?v=flagship20261017';
 import { StudioDockLayout } from './studio_layout.js?v=panelnames_20261017';
