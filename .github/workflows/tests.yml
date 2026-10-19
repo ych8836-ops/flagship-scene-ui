@@ -1,0 +1,19 @@
+name: Source and interface tests
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python tests/test_setup.py
+      - run: python tests/test_dependencies.py
+      - run: python tests/test_plan_semantics.py
+      - run: python tools/install_dependencies.py --features ui
+      - run: npm test
+      - run: python -m compileall -q custom_nodes service tools setup.py run.py bootstrap.py
