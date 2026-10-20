@@ -24,7 +24,15 @@ def main():
     for name in names:
         relative = Path(name)
         path = ROOT / relative
-        if any(part in EXCLUDED_PARTS for part in relative.parts) or path.suffix.lower() in EXCLUDED_SUFFIXES:
+        native_asset = relative.parts[0] == 'native' and (
+            '/fonts/' in name or '/vendor/' in name)
+        blocked_parts = set(relative.parts) & EXCLUDED_PARTS
+        if native_asset:
+            blocked_parts -= {'fonts', 'vendor'}
+        blocked_part = bool(blocked_parts)
+        blocked_suffix = path.suffix.lower() in EXCLUDED_SUFFIXES and not (
+            native_asset and path.suffix.lower() in {'.ttf', '.woff2'})
+        if blocked_part or blocked_suffix:
             raise ValueError('Unexpected private/binary file in source list: ' + name)
         if relative.name in {'config.local.json', '.env'} or not path.resolve().is_relative_to(ROOT) or path.is_symlink():
             raise ValueError('Invalid source entry: ' + name)

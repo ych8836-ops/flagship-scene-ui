@@ -24,3 +24,8 @@ dist/
 .env.*
 submission/
 node_modules/
+
+# Native source intentionally carries licensed offline UI font/vendor assets.
+!native/custom_nodes/*/web/fonts/**
+!native/custom_nodes/*/web/vendor/**
+!native/custom_nodes/*/fonts/**

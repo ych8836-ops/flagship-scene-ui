@@ -4,6 +4,8 @@ Original Flagship Scene UI code is licensed under the **GNU Affero General Publi
 
 ## Scope
 
+The native custom-node source edition added on 2026-10-21 is covered by the same component-specific scope. It additionally carries upstream GPL/MIT/Apache source snapshots and MIT/OFL UI assets under their adjacent notices. The protected image-upscaler binary is excluded from Git source and is not represented as AGPL source in any separate full native ZIP. See [native credits](../native/CREDITS.md).
+
 The project license applies to original studio UI, project/scene orchestration, SDK service, camera adapters, original registration wrappers, setup tools and original documentation. An explicit third-party notice or adjacent license takes precedence for that third-party material. The aggregate source ZIP does not replace component licenses with one blanket license.
 
 - `custom_nodes/ComfyUI-RTX-Video-Restoration` retains its existing Apache-2.0 license and notices unchanged.

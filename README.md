@@ -1,5 +1,22 @@
 # Flagship Scene UI
 
+## 원본 커스텀노드판 · 한글 기능 안내
+
+**[원본판 설치·소스](native/README.md)** · **[기능별 한글 안내 이미지 27종과 설명](native/docs/사용설명서_KO.md)** · [필수 모델·LoRA 링크](native/MODELS_AND_LINKS.md) · [LLM용 JSON 작성 요청](native/docs/LLM_JSON_작성요청_KO.md)
+
+| Edition | Install path | Documentation |
+| --- | --- | --- |
+| Native / 원본 | Install `native/` packs into your selected ComfyUI | [한국어 그림 설명서](native/docs/사용설명서_KO.md), [English text](native/docs/MANUAL_EN.md) |
+| SDK | Isolated app using the root setup below | [SDK installation](docs/INSTALLATION.md) |
+
+The native snapshot preserves the installed original runtime source. It includes attributed upstream node snapshots and UI font/Three.js assets. Its protected image-upscaler binary is excluded from Git source. Native normal assembly uses FFmpeg; SDK normal assembly uses Endless. Both sequence modes stitch within scenes using Endless, then join scenes via FFmpeg. Audio may be re-encoded for timing alignment. These editions have separate setup paths; do not overlay one onto the other.
+
+![일반 모드와 시퀀스 모드 안내](native/docs/images/04-normal-sequence_ko.png)
+
+---
+
+## SDK edition
+
 **Direct scenes. Refine individual clips. Keep the workflow open.**
 
 A scene-based MiniMax H3 studio powered by the **official Comfy SDK**. Plan a story, assign references to the right clips, direct camera changes, regenerate one clip, and assemble the result without rebuilding the entire project.
@@ -84,7 +101,7 @@ See **[CREDITS.md](CREDITS.md)** for each project's role, pinned source, core/op
 
 ## Source and dependencies
 
-This repository publishes the Flagship UI, orchestration, adapters and our custom-node source. **No ComfyUI engine, external node implementation, Python environment, NVIDIA SDK/DLL, model, LoRA, private project or user media is bundled.** The installer downloads pinned external code/assets only when requested and verifies SHA256. External repositories remain separately attributed. [Installation](docs/INSTALLATION.md), [architecture](docs/ARCHITECTURE.md), [prompt rules](docs/PROMPT_RULES_KO.md), [credits and licensing](THIRD_PARTY_NOTICES.md).
+The root SDK distribution publishes the Flagship UI, orchestration, adapters and our custom-node source; its installer downloads pinned external code/assets only when requested and verifies SHA256. The separate `native/` edition additionally bundles attributed upstream source snapshots and licensed UI assets as listed in [native credits](native/CREDITS.md). **Neither edition bundles the ComfyUI engine, Python environment, NVIDIA SDK/DLL, models, LoRAs, private projects or user media.** [SDK installation](docs/INSTALLATION.md), [architecture](docs/ARCHITECTURE.md), [prompt rules](docs/PROMPT_RULES_KO.md), [credits and licensing](THIRD_PARTY_NOTICES.md).
 
 See the [included custom-node inventory](docs/CUSTOM_NODES.md) for the four source packs, the external-context registration adapter and the face-refiner integration patches. The standalone image upscaler and downscalers are not part of this repository.
 
