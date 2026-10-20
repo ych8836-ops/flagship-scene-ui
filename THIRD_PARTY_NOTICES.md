@@ -1,7 +1,5 @@
 # Source provenance
 
-**Edition scope:** the dependency/download table below describes the root SDK app. The separate [`native/`](native/README.md) edition includes installed source snapshots of Motion Context, noEmbryo, KJNodes, VideoHelperSuite, H3-FaceRefine and optional Spectrum, plus licensed CrossView/Three.js/Noto assets. Their original notices are retained in-place and listed in [native credits](native/CREDITS.md). Protected image-upscaler binaries are absent from Git source; any separately offered full native ZIP identifies that component explicitly. Neither source tree includes model weights or NVIDIA proprietary runtimes.
-
 The detailed [custom-node and workflow credits](CREDITS.md) name maintainers, pinned sources, adopted node IDs, core/optional roles and the original Endless v1.5 workflow by u/embryo10. These acknowledgements supplement the license notices below.
 
 | Component | Origin | Distribution in this source repository |
@@ -20,6 +18,6 @@ The detailed [custom-node and workflow credits](CREDITS.md) name maintainers, pi
 | jsdom / Acorn | [jsdom](https://github.com/jsdom/jsdom), [Acorn](https://github.com/acornjs/acorn) | Development-only DOM and message-coverage test dependencies, pinned in package-lock.json; not bundled into the studio runtime |
 | NVIDIA VFX / Optical Flow / FRUC | [NVIDIA VFX documentation](https://docs.nvidia.com/maxine/vfx-python/latest/index.html), [Optical Flow SDK](https://developer.nvidia.com/opticalflow-sdk) | No proprietary implementation, binding wheel, SDK or DLL included |
 
-The SDK dependency lock records immutable revisions and archive/file checksums. SDK downloads remain in ignored runtime/download directories. The native source snapshots are separately listed and checksummed in native/. References, example model links and dependency availability do not transfer model licenses to this application.
+The dependency lock records immutable revisions and archive/file checksums. External source remains in ignored runtime/download directories and is not included in the public source archive. References, example model links and dependency availability do not transfer model licenses to this application.
 
 No personal photographs, voice-training material, private voice LoRA or private user project is part of the source package. Competition example footage is a separate text-generated cube example with no real person or branded character.

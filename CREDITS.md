@@ -1,9 +1,5 @@
 # Credits and upstream custom nodes
 
-## Native edition added 2026-10-21
-
-The original ComfyUI custom-node distribution is now under [`native/`](native/README.md), alongside the isolated SDK app. It includes attributed upstream snapshots and offline font/Three.js/CrossView assets with adjacent notices: see [native credits](native/CREDITS.md) and [inventory](native/BUNDLED_NODES.json). Root SDK dependency download descriptions below remain specific to SDK setup. Protected image-upscaler binaries are excluded from Git source. The Korean feature-guide images are generated explanatory diagrams, not private project screenshots or generated-output quality evidence.
-
 Flagship Scene UI builds a studio interface and project/scene/clip orchestration around existing ComfyUI and MiniMax H3 capabilities. Credit for the generation model, motion/audio context, Endless AV stitching, upstream refinement, optimizer patches and geometry implementations belongs to the respective upstream projects and contributors below.
 
 ## Workflow foundation
